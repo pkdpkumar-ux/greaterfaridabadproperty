@@ -1,0 +1,641 @@
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablets (768px and up) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .property-detail-container {
+        grid-template-columns: 1fr;
+    }
+
+    .property-details {
+        position: static;
+    }
+
+    .filters-sidebar {
+        position: static;
+    }
+
+    .properties-container {
+        grid-template-columns: 1fr;
+    }
+
+    .properties-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .mission-vision {
+        grid-template-columns: 1fr;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (max-width 767px) */
+@media (max-width: 767px) {
+    /* Typography */
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    /* Navigation */
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 20px 0;
+        margin: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        margin: 10px 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 60px 16px;
+    }
+
+    .hero::before {
+        width: 300px;
+        height: 300px;
+        transform: translate(150px, -150px);
+    }
+
+    .hero-title {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+
+    /* Properties Grid */
+    .properties-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* CTA Buttons */
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btn-lg {
+        width: 100%;
+    }
+
+    /* Property Detail */
+    .property-detail-container {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-main {
+        height: 300px;
+    }
+
+    .gallery-thumbnails {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .property-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .features-list {
+        grid-template-columns: 1fr;
+    }
+
+    .amenities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Contact */
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        order: 2;
+    }
+
+    .contact-form-section {
+        order: 1;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    /* Filters */
+    .filters-sidebar {
+        grid-column: 1;
+        position: static;
+    }
+
+    .properties-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Team Grid */
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Benefits Grid */
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Page Header */
+    .page-header {
+        padding: 40px 16px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        padding: 40px 16px;
+    }
+
+    .cta-section h2 {
+        font-size: 28px;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* WhatsApp Button */
+    .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    /* Search Form */
+    .search-input {
+        width: 100%;
+    }
+
+    /* Sector/Builder Buttons */
+    .sector-buttons,
+    .builder-buttons {
+        justify-content: center;
+    }
+
+    .sector-btn,
+    .builder-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    /* Properties Header */
+    .properties-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .sort-select {
+        width: 100%;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+        flex-wrap: wrap;
+        font-size: 12px;
+    }
+}
+
+/* Small Mobile (max-width 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 40px 12px;
+    }
+
+    .hero-title {
+        font-size: 20px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .search-container {
+        padding: 16px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .btn-lg {
+        padding: 12px 20px;
+    }
+
+    /* Cards */
+    .property-card {
+        border-radius: 8px;
+    }
+
+    .property-image {
+        height: 180px;
+    }
+
+    /* Feature Grid */
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        padding: 20px;
+    }
+
+    /* Property Specs */
+    .property-specs {
+        grid-template-columns: 1fr;
+    }
+
+    /* Mission Cards */
+    .mission-card {
+        padding: 25px;
+    }
+
+    .card-icon {
+        font-size: 36px;
+    }
+
+    .benefit-item {
+        padding: 20px;
+    }
+
+    .benefit-icon {
+        font-size: 32px;
+    }
+
+    /* Gallery */
+    .gallery-main {
+        height: 250px;
+    }
+
+    .gallery-thumbnails {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .gallery-thumbnail {
+        height: 80px;
+    }
+
+    .gallery-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .gallery-btn.prev {
+        left: 10px;
+    }
+
+    .gallery-btn.next {
+        right: 10px;
+    }
+
+    /* Forms */
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    /* Statistics */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-number {
+        font-size: 36px;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 40px 12px 15px;
+    }
+
+    .footer-content {
+        gap: 30px;
+    }
+
+    .footer-section h4 {
+        font-size: 16px;
+    }
+
+    .social-links {
+        gap: 10px;
+    }
+
+    .social-links a {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    /* Page Header */
+    .page-header {
+        padding: 30px 12px;
+    }
+
+    .page-header h1 {
+        font-size: 24px;
+    }
+
+    .page-header p {
+        font-size: 14px;
+    }
+
+    /* Section Header */
+    .section-header {
+        margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+        font-size: 22px;
+    }
+
+    .section-header p {
+        font-size: 14px;
+    }
+
+    /* Margin & Padding */
+    .margin-top-60 {
+        margin-top: 40px;
+    }
+
+    .margin-bottom-40 {
+        margin-bottom: 30px;
+    }
+
+    /* Contact Items */
+    .contact-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .contact-icon {
+        font-size: 24px;
+    }
+
+    /* Team Cards */
+    .team-photo {
+        font-size: 60px;
+    }
+
+    /* Modal */
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-close {
+        font-size: 24px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        padding: 30px 12px;
+    }
+
+    .cta-section h2 {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .cta-section p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    /* Testimonial */
+    .testimonial-card {
+        padding: 20px;
+    }
+
+    /* Property Meta */
+    .property-meta {
+        gap: 12px;
+        padding: 12px 0;
+    }
+
+    .meta-item {
+        font-size: 13px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb span {
+        display: none;
+    }
+}
+
+/* Landscape Mobile (max-width 768px and orientation: landscape) */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        padding: 40px 16px;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .search-form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-main {
+        height: 300px;
+    }
+
+    .properties-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large Desktop (1400px and up) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1350px;
+    }
+
+    .properties-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero-title {
+        font-size: 64px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Small Mobile (below 480px) */
+@media (max-width: 479px) {
+    /* DDP Section */
+    .ddp-section {
+        padding: 40px 0;
+        margin: 40px 0;
+    }
+
+    .ddp-section h2 {
+        font-size: 28px;
+    }
+
+    .ddp-section p {
+        font-size: 14px;
+    }
+
+    .ddp-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .ddp-info h3 {
+        font-size: 22px;
+    }
+
+    .ddp-info p {
+        font-size: 14px;
+    }
+
+    .ddp-features li {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .ddp-download {
+        padding: 30px 20px;
+    }
+
+    .ddp-download h4 {
+        font-size: 18px;
+    }
+
+    .ddp-download .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .pdf-icon {
+        font-size: 50px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .whatsapp-btn,
+    .cta-buttons,
+    .hamburger {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .property-card {
+        page-break-inside: avoid;
+    }
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Test - Greater Faridabad Property</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        h1 { color: #2d5a3d; margin-bottom: 10px; }
+        p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .test-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #d4a574;
+        }
+        .test-section h3 { color: #2d5a3d; margin-bottom: 15px; }
+        form { background: #f0f4f8; padding: 20px; border-radius: 8px; }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #2d5a3d;
+            box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+        }
+        button {
+            background: #2d5a3d;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        button:hover { background: #1e3c2a; transform: translateY(-2px); }
+        .status {
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            display: none;
+        }
+        .status.show { display: block; }
+        .status.success { background: #e8f5e9; color: #2e7d32; border: 1px solid #4caf50; }
+        .status.error { background: #ffebee; color: #c62828; border: 1px solid #f44336; }
+        .status.info { background: #e3f2fd; color: #1565c0; border: 1px solid #2196f3; }
+        code {
+            background: #2d5a3d;
+            color: #d4a574;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            display: inline-block;
+        }
+        pre {
+            background: #2d5a3d;
+            color: #d4a574;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 12px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Email System Test</h1>
+        <p>Test your email configuration before deploying</p>
+
+        <!-- Test Email Configuration -->
+        <div class="test-section">
+            <h3>🔍 Current Configuration</h3>
+            <p>Endpoint: <code id="endpoint">Loading...</code></p>
+            <p id="status-config">Checking configuration...</p>
+        </div>
+
+        <!-- Test Form -->
+        <div class="test-section">
+            <h3>✉️ Send Test Email</h3>
+            <form id="testForm">
+                <input type="text" name="name" placeholder="Your Name" required value="Test User">
+                <input type="email" name="email" placeholder="Your Email" required value="test@example.com">
+                <input type="tel" name="phone" placeholder="Phone Number" required value="9999098553">
+                <textarea name="message" placeholder="Test Message" required rows="4">This is a test email from the Greater Faridabad Property website.</textarea>
+                <button type="submit">Send Test Email</button>
+            </form>
+            <div id="status" class="status"></div>
+        </div>
+
+        <!-- Browser Console Check -->
+        <div class="test-section">
+            <h3>🖥️ Debug Instructions</h3>
+            <p><strong>1. Open Browser Console:</strong></p>
+            <p>Press <code>F12</code> or <code>Right Click → Inspect → Console Tab</code></p>
+            
+            <p style="margin-top: 15px;"><strong>2. Check Configuration:</strong></p>
+            <p>Type in console: <code>CONFIG.FORMSPREE_ENDPOINT</code></p>
+            
+            <p style="margin-top: 15px;"><strong>3. Look for Errors:</strong></p>
+            <p>You'll see red error messages if something is wrong. Check:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>CORS errors (security issue)</li>
+                <li>Network errors (connectivity)</li>
+                <li>Form validation errors</li>
+            </ul>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="test-section">
+            <h3>🛠️ Common Issues & Fixes</h3>
+            
+            <p><strong>Issue 1: "Error sending message"</strong></p>
+            <p>Check the browser console (F12) for the actual error message. Common causes:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>❌ Formspree endpoint is placeholder (<code>xyzlqmnz</code>)</li>
+                <li>❌ Formspree account not verified</li>
+                <li>❌ CORS blocking (happens locally sometimes)</li>
+                <li>✅ Solution: Use verified Formspree Form ID</li>
+            </ul>
+            
+            <p style="margin-top: 15px;"><strong>Issue 2: Network/CORS Error</strong></p>
+            <p>This might happen on localhost. Try:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Use a different port (8001 instead of 8000)</li>
+                <li>Deploy to GitHub Pages (CORS will work)</li>
+                <li>Use alternative service (see below)</li>
+            </ul>
+            
+            <p style="margin-top: 15px;"><strong>Issue 3: Still Not Working?</strong></p>
+            <p>Try alternative services:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>EmailJS (more reliable for local testing)</li>
+                <li>Sendmail / Backend API</li>
+                <li>Check EMAIL_SETUP.md for other options</li>
+            </ul>
+        </div>
+
+        <!-- What Happens Next -->
+        <div class="test-section">
+            <h3>📬 What to Expect</h3>
+            <p>When you click "Send Test Email":</p>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>Form validates input</li>
+                <li>"Sending..." message appears</li>
+                <li>Data sends to Formspree</li>
+                <li>Success message or error shows</li>
+                <li>Email arrives at greaterfaridabadproperty@gmail.com</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Load config
+        const CONFIG = {
+            FORMSPREE_ENDPOINT: 'https://formsubmit.co/greaterfaridabadproperty@gmail.com',
+        };
+
+        // Display config
+        document.getElementById('endpoint').textContent = CONFIG.FORMSPREE_ENDPOINT;
+
+        // Validate config
+        const isValidEndpoint = CONFIG.FORMSPREE_ENDPOINT.includes('/f/') && 
+                               !CONFIG.FORMSPREE_ENDPOINT.includes('xyzlqmnz');
+        
+        const configStatus = document.getElementById('status-config');
+        if (isValidEndpoint) {
+            configStatus.innerHTML = '✅ <strong>Configuration looks good!</strong> Ready to send emails.';
+            configStatus.style.color = '#2e7d32';
+        } else {
+            configStatus.innerHTML = '❌ <strong>Invalid Formspree endpoint detected!</strong> Update your Formspree Form ID in config.js';
+            configStatus.style.color = '#c62828';
+        }
+
+        // Handle form submission
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = 'status show info';
+            statusDiv.textContent = '📤 Sending test email...';
+
+            try {
+                const formData = new FormData(this);
+                formData.append('_subject', 'Test Email - Greater Faridabad Property');
+                formData.append('_reply_to', formData.get('email'));
+
+                const response = await fetch(CONFIG.FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    statusDiv.className = 'status show success';
+                    statusDiv.innerHTML = '✅ <strong>Success!</strong> Test email sent. Check your inbox at greaterfaridabadproperty@gmail.com';
+                    this.reset();
+                } else {
+                    const errorData = await response.json();
+                    statusDiv.className = 'status show error';
+                    statusDiv.innerHTML = `❌ <strong>Error (${response.status}):</strong> ${errorData.errors ? errorData.errors.map(e => e.message).join(', ') : 'Check browser console for details'}`;
+                }
+            } catch (error) {
+                statusDiv.className = 'status show error';
+                statusDiv.innerHTML = `❌ <strong>Network Error:</strong> ${error.message}<br><small>Check browser console (F12) for more details. This might be a CORS issue on localhost.</small>`;
+                console.error('Full error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

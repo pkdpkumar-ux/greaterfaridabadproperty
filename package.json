@@ -1,0 +1,30 @@
+{
+  "name": "greaterfaridabadproperty",
+  "version": "1.0.0",
+  "description": "Greater Faridabad Property - Premium Real Estate Website",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'No build required for static site'",
+    "test": "echo 'No tests configured yet'"
+  },
+  "keywords": [
+    "real estate",
+    "properties",
+    "Faridabad",
+    "residential",
+    "commercial"
+  ],
+  "author": "Greater Faridabad Property",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/greaterfaridabadproperty.git"
+  },
+  "homepage": "https://greaterfaridabadproperty.in",
+  "devDependencies": {},
+  "dependencies": {
+    "font-awesome": "^6.4.0"
+  }
+}

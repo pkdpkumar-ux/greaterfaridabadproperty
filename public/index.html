@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Greater Faridabad Property - Premium Real Estate in Faridabad. Find residential and commercial properties in top sectors.">
+    <meta name="keywords" content="real estate, properties, Faridabad, residential, commercial">
+    <title>Greater Faridabad Property - Premium Real Estate</title>
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="../src/css/components.css">
+    <link rel="stylesheet" href="../src/css/responsive.css">
+    
+    <!-- Font Links -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar sticky-navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Greater Faridabad</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="../pages/properties.html" class="nav-link">Properties</a></li>
+                    <li><a href="../pages/sector-wise.html" class="nav-link">Sectors</a></li>
+                    <li><a href="../pages/builder-properties.html" class="nav-link">Builders</a></li>
+                    <li><a href="../pages/about.html" class="nav-link">About</a></li>
+                    <li><a href="../pages/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <button class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Find Your Dream Home in Greater Faridabad</h1>
+            <p class="hero-subtitle">Discover premium residential and commercial properties in the fastest growing city</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <form class="search-form" id="searchForm">
+                    <div class="search-group">
+                        <label>Location</label>
+                        <input type="text" placeholder="Enter sector or area" class="search-input" id="searchLocation">
+                    </div>
+                    <div class="search-group">
+                        <label>Property Type</label>
+                        <select class="search-input" id="searchType">
+                            <option value="">All Types</option>
+                            <option value="residential">Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="plot">Plot</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label>Budget (₹)</label>
+                        <select class="search-input" id="searchBudget">
+                            <option value="">Any Budget</option>
+                            <option value="0-25">Below 25 Lakh</option>
+                            <option value="25-50">25-50 Lakh</option>
+                            <option value="50-100">50 Lakh - 1 Cr</option>
+                            <option value="100+">Above 1 Cr</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section class="featured-properties" id="featured">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Properties</h2>
+                <p>Handpicked premium properties for you</p>
+            </div>
+            
+            <div class="properties-grid" id="featuredPropertiesGrid">
+                <!-- Properties loaded via JavaScript -->
+            </div>
+            
+            <div class="text-center margin-top-40">
+                <a href="./properties.html" class="btn btn-outline">View All Properties</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Greater Faridabad Property?</h2>
+                <p>Your trusted partner in real estate</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Verified Properties</h3>
+                    <p>All properties are verified and legally authentic</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Team</h3>
+                    <p>15+ years of experience in Faridabad real estate</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Fast Processing</h3>
+                    <p>Quick documentation and smooth transaction process</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Always available to assist you in your journey</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-location-dot"></i>
+                    </div>
+                    <h3>Prime Locations</h3>
+                    <p>Properties in the most sought-after sectors</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield"></i>
+                    </div>
+                    <h3>Secure Deals</h3>
+                    <p>Safe and transparent transactions guaranteed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faridabad DDP 2031 Section -->
+    <section class="ddp-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Faridabad Development Plan 2031</h2>
+                <p>Comprehensive city development roadmap for Greater Faridabad</p>
+            </div>
+            
+            <div class="ddp-content">
+                <div class="ddp-info">
+                    <h3>Master Plan & Future Vision</h3>
+                    <p>The Faridabad Development Plan 2031 outlines the strategic growth and sustainable development of the city. This comprehensive document includes:</p>
+                    <ul class="ddp-features">
+                        <li><i class="fas fa-check-circle"></i> Urban infrastructure development</li>
+                        <li><i class="fas fa-check-circle"></i> Residential and commercial zones</li>
+                        <li><i class="fas fa-check-circle"></i> Transportation networks</li>
+                        <li><i class="fas fa-check-circle"></i> Green spaces and sustainability</li>
+                        <li><i class="fas fa-check-circle"></i> Industrial development areas</li>
+                        <li><i class="fas fa-check-circle"></i> Public facilities planning</li>
+                    </ul>
+                    <p class="ddp-note">Download and review the official DDP 2031 document to understand the future scope of Faridabad and make informed real estate investment decisions.</p>
+                </div>
+                
+                <div class="ddp-download">
+                    <div class="pdf-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4>FARIDABAD_DDP_2031</h4>
+                    <p class="file-size">PDF Document • 3.3 MB</p>
+                    <a href="../src/assets/FARIDABAD_DDP_2031.pdf" class="btn btn-primary" download>
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <a href="../src/assets/FARIDABAD_DDP_2031.pdf" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-eye"></i> View Online
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+                <p>Real stories from satisfied customers</p>
+            </div>
+            
+            <div class="testimonials-grid" id="testimonialsList">
+                <!-- Testimonials loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Find Your Perfect Property?</h2>
+            <p>Let our experts help you today</p>
+            
+            <div class="cta-buttons">
+                <button class="btn btn-primary btn-lg" id="ctaCallBtn">
+                    <i class="fas fa-phone"></i> Call Now
+                </button>
+                <button class="btn btn-secondary btn-lg" id="ctaWhatsappBtn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="btn btn-outline btn-lg" data-modal="enquiry">
+                    <i class="fas fa-envelope"></i> Send Enquiry
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919999098553?text=Hello%20Greater%20Faridabad%20Property" class="whatsapp-btn" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Enquiry Modal -->
+    <div class="modal" id="enquiryModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Send Us Your Enquiry</h2>
+            <form class="enquiry-form" id="enquiryForm">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Property Type</label>
+                    <select name="propertyType">
+                        <option value="">Select Type</option>
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="plot">Plot</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Submit Enquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="./about.html">Our Story</a></li>
+                        <li><a href="./about.html">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="./properties.html">All Properties</a></li>
+                        <li><a href="./sector-wise.html">By Sector</a></li>
+                        <li><a href="./builder-properties.html">Builders</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:+919999098553"><i class="fas fa-phone"></i> +91-9999098553</a></li>
+                        <li><a href="mailto:greaterfaridabadproperty@gmail.com"><i class="fas fa-envelope"></i> Email Us</a></li>
+                        <li><p><i class="fas fa-map-marker-alt"></i> Greater Faridabad</p></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Greater Faridabad Property. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/react-dom.min.js"></script>
+    
+    <script src="../src/data/properties.js"></script>
+    <script src="../src/js/config.js"></script>
+    <script src="../src/js/main.js"></script>
+</body>
+</html>
