@@ -1,2 +1,0 @@
-# greaterfaridabadproperty
-greaterfaridabadproperty for our domain greaterfaridabadproperty
