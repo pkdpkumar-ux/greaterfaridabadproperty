@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rent Page Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .success { color: green; }
+        .error { color: red; }
+        .property { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Rent Page Data Test</h1>
+    <div id="debug"></div>
+    <div id="properties"></div>
+
+    <script>
+        const debug = document.getElementById('debug');
+        const props = document.getElementById('properties');
+        
+        debug.innerHTML += '<p>Step 1: Script loaded</p>';
+        
+        // Immediate check
+        if (typeof rentalPropertiesData !== 'undefined') {
+            debug.innerHTML += '<p class="success">✓ rentalPropertiesData is available IMMEDIATELY</p>';
+            debug.innerHTML += '<p>Count: ' + rentalPropertiesData.length + '</p>';
+            showProperties();
+        } else {
+            debug.innerHTML += '<p class="error">✗ rentalPropertiesData NOT available immediately</p>';
+            
+            // Try after a delay
+            setTimeout(() => {
+                if (typeof rentalPropertiesData !== 'undefined') {
+                    debug.innerHTML += '<p class="success">✓ But IS available after 100ms</p>';
+                    debug.innerHTML += '<p>Count: ' + rentalPropertiesData.length + '</p>';
+                    showProperties();
+                } else {
+                    debug.innerHTML += '<p class="error">✗ Still not available after 100ms</p>';
+                    debug.innerHTML += '<p><strong>Available window properties:</strong></p>';
+                    const keys = Object.keys(window).filter(k => k.includes('rental') || k.includes('properties') || k.includes('Properties'));
+                    debug.innerHTML += '<p>' + (keys.length > 0 ? keys.join(', ') : 'None found') + '</p>';
+                }
+            }, 100);
+        }
+        
+        function showProperties() {
+            if (rentalPropertiesData && rentalPropertiesData.length > 0) {
+                rentalPropertiesData.slice(0, 3).forEach(prop => {
+                    props.innerHTML += `<div class="property">
+                        <h3>${prop.title}</h3>
+                        <p>Rent: ₹${prop.monthlyRent}</p>
+                        <p>Location: ${prop.location}</p>
+                    </div>`;
+                });
+            }
+        }
+    </script>
+    
+    <!-- Load the properties file -->
+    <script src="./src/data/properties.js"></script>
+</body>
+</html>

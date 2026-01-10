@@ -21,32 +21,41 @@ function initializeNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
+    // Reset menu state on page load
+    if (navMenu) {
+        navMenu.classList.remove('active');
+    }
     if (hamburger) {
-        hamburger.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+    }
+    
+    if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
         });
     }
     
-    // Close menu when link is clicked
+    // Close menu when link is clicked (without changing active state)
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
             if (hamburger) hamburger.classList.remove('active');
-            
-            // Set active link
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
         });
     });
     
-    // Highlight current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href').split('/').pop() || 'index.html';
-        if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-            link.classList.add('active');
+    // Close menu when clicking outside of it
+    document.addEventListener('click', function(e) {
+        if (navMenu && hamburger) {
+            const isClickInsideNav = navMenu.contains(e.target);
+            const isClickOnHamburger = hamburger.contains(e.target);
+            
+            if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
         }
     });
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Data Load</title>
+</head>
+<body>
+    <h1>Testing properties.js Data Load</h1>
+    <div id="result">Loading...</div>
+    
+    <script>
+        window.onerror = function(msg, url, line, col, err) {
+            document.getElementById('result').innerHTML += '<p style="color:red"><strong>JavaScript Error:</strong> ' + msg + ' at ' + url + ':' + line + '</p>';
+            return true;
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var result = document.getElementById('result');
+            result.innerHTML = '<p><strong>Checking data availability:</strong></p>';
+            
+            // Check immediately
+            if (typeof propertiesData !== 'undefined') {
+                result.innerHTML += '<p style="color:green">✓ propertiesData loaded: ' + propertiesData.length + ' items</p>';
+            } else {
+                result.innerHTML += '<p style="color:red">✗ propertiesData NOT loaded</p>';
+            }
+            
+            if (typeof rentalPropertiesData !== 'undefined') {
+                result.innerHTML += '<p style="color:green">✓ rentalPropertiesData loaded: ' + rentalPropertiesData.length + ' items</p>';
+                if (rentalPropertiesData.length > 0) {
+                    result.innerHTML += '<p>First rental property: ' + rentalPropertiesData[0].title + '</p>';
+                }
+            } else {
+                result.innerHTML += '<p style="color:red">✗ rentalPropertiesData NOT loaded</p>';
+            }
+        });
+    </script>
+    
+    <!-- Load data file -->
+    <script src="./src/data/properties.js"></script>
+</body>
+</html>

@@ -670,10 +670,466 @@ function filterProperties(filters = {}) {
     });
 }
 
+// Rental Properties Data
+const rentalPropertiesData = [
+    {
+        id: 101,
+        title: "2 BHK Apartment on Rent in Sector 78",
+        location: "Sector 78, Greater Faridabad",
+        sector: "78",
+        monthlyRent: 15000,
+        securityDeposit: 300000,
+        type: "residential",
+        bhk: 2,
+        size: 1200,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "pool", "parking", "security"],
+        features: ["2 Bathrooms", "Balcony", "Modular Kitchen", "Water Tank"],
+        description: "Spacious 2 BHK unfurnished apartment in well-maintained residential complex with excellent amenities.",
+        dateAdded: Date.now(),
+        views: 234
+    },
+    {
+        id: 102,
+        title: "1 BHK Semi-Furnished Flat in Sector 82",
+        location: "Sector 82, Greater Faridabad",
+        sector: "82",
+        monthlyRent: 10000,
+        securityDeposit: 200000,
+        type: "residential",
+        bhk: 1,
+        size: 650,
+        furnishing: "semi-furnished",
+        images: [
+            "https://images.unsplash.com/photo-1462874149175-446339e2e1d8?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1549399542-7e3f8b83ad45?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking", "security"],
+        features: ["1 Bathroom", "Balcony", "Built-in Wardrobes"],
+        description: "Comfortable 1 BHK semi-furnished flat perfect for bachelor or couple. Near metro and shopping areas.",
+        dateAdded: Date.now() - 86400000,
+        views: 156
+    },
+    {
+        id: 103,
+        title: "3 BHK Fully Furnished Apartment in Sector 86",
+        location: "Sector 86, Greater Faridabad",
+        sector: "86",
+        monthlyRent: 25000,
+        securityDeposit: 500000,
+        type: "residential",
+        bhk: 3,
+        size: 1600,
+        furnishing: "fully-furnished",
+        images: [
+            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "pool", "parking", "security"],
+        features: ["3 Bathrooms", "Fully Furnished", "Modular Kitchen", "Washer/Dryer"],
+        description: "Luxurious 3 BHK fully furnished apartment ready to move in. Premium furnishings and appliances included.",
+        dateAdded: Date.now() - 172800000,
+        views: 412
+    },
+    {
+        id: 104,
+        title: "2 BHK Unfurnished Villa in Sector 88",
+        location: "Sector 88, Greater Faridabad",
+        sector: "88",
+        monthlyRent: 18000,
+        securityDeposit: 360000,
+        type: "residential",
+        bhk: 2,
+        size: 1100,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking", "security", "garden"],
+        features: ["2 Bathrooms", "Garden", "Carport", "Independent"],
+        description: "Independent 2 BHK villa with private garden and dedicated parking. Peaceful residential locality.",
+        dateAdded: Date.now(),
+        views: 189
+    },
+    {
+        id: 105,
+        title: "1 BHK Unfurnished in Sector 75",
+        location: "Sector 75, Greater Faridabad",
+        sector: "75",
+        monthlyRent: 8000,
+        securityDeposit: 160000,
+        type: "residential",
+        bhk: 1,
+        size: 550,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1462874149175-446339e2e1d8?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1549399542-7e3f8b83ad45?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking"],
+        features: ["1 Bathroom", "Balcony"],
+        description: "Budget-friendly 1 BHK unfurnished apartment. Great location with easy access to schools and market.",
+        dateAdded: Date.now() - 259200000,
+        views: 127
+    },
+    {
+        id: 106,
+        title: "Commercial Space for Rent in Sector 85",
+        location: "Sector 85, Greater Faridabad",
+        sector: "85",
+        monthlyRent: 30000,
+        securityDeposit: 600000,
+        type: "commercial",
+        bhk: null,
+        size: 800,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1560607592-735ee62f507f?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1576267423446-16c0db7b63e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking", "security"],
+        features: ["Good Visibility", "High Traffic", "Corner Shop"],
+        description: "Well-located commercial space suitable for retail, office, or service business. High footfall area.",
+        dateAdded: Date.now(),
+        views: 298
+    },
+    {
+        id: 107,
+        title: "2 BHK Semi-Furnished in Sector 81",
+        location: "Sector 81, Greater Faridabad",
+        sector: "81",
+        monthlyRent: 12000,
+        securityDeposit: 240000,
+        type: "residential",
+        bhk: 2,
+        size: 1050,
+        furnishing: "semi-furnished",
+        images: [
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "parking", "security"],
+        features: ["2 Bathrooms", "Balcony", "Kitchen Cabinets"],
+        description: "Well-maintained 2 BHK semi-furnished with basic amenities. Perfect for small families.",
+        dateAdded: Date.now() - 345600000,
+        views: 203
+    },
+    {
+        id: 108,
+        title: "3 BHK Unfurnished Villa in Sector 86",
+        location: "Sector 86, Greater Faridabad",
+        sector: "86",
+        monthlyRent: 28000,
+        securityDeposit: 560000,
+        type: "residential",
+        bhk: 3,
+        size: 1500,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "pool", "parking", "security", "garden"],
+        features: ["3 Bathrooms", "Garden", "Carport", "Spacious"],
+        description: "Spacious 3 BHK unfurnished villa in premium gated community with excellent amenities.",
+        dateAdded: Date.now() - 432000000,
+        views: 356
+    },
+    {
+        id: 109,
+        title: "1 BHK Fully Furnished in Sector 78",
+        location: "Sector 78, Greater Faridabad",
+        sector: "78",
+        monthlyRent: 12000,
+        securityDeposit: 240000,
+        type: "residential",
+        bhk: 1,
+        size: 700,
+        furnishing: "fully-furnished",
+        images: [
+            "https://images.unsplash.com/photo-1462874149175-446339e2e1d8?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1549399542-7e3f8b83ad45?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "parking", "security"],
+        features: ["1 Bathroom", "Fully Furnished", "AC"],
+        description: "Ready to move 1 BHK fully furnished apartment. All utilities and furnishings included.",
+        dateAdded: Date.now() - 518400000,
+        views: 167
+    },
+    {
+        id: 110,
+        title: "Office Space in Sector 84",
+        location: "Sector 84, Greater Faridabad",
+        sector: "84",
+        monthlyRent: 40000,
+        securityDeposit: 800000,
+        type: "commercial",
+        bhk: null,
+        size: 1200,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1560707566-d4a1d4410495?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking", "security"],
+        features: ["Open Plan", "Cabins Ready", "Lift"],
+        description: "Premium office space with modern infrastructure. Suitable for corporate offices and consultancies.",
+        dateAdded: Date.now(),
+        views: 445,
+        builder: "Azad Real Estate & Developers"
+    },
+    {
+        id: 111,
+        title: "2 BHK Apartment in Sector 69",
+        location: "Sector 69, Greater Faridabad",
+        sector: "69",
+        monthlyRent: 16000,
+        securityDeposit: 320000,
+        type: "residential",
+        bhk: 2,
+        size: 1150,
+        furnishing: "semi-furnished",
+        images: [
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "parking", "security"],
+        features: ["2 Bathrooms", "Balcony", "Kitchen Cabinets"],
+        description: "Well-appointed 2 BHK semi-furnished apartment with modern amenities in prime location.",
+        dateAdded: Date.now() - 172800000,
+        views: 278,
+        builder: "Skyline Properties & Buildcon"
+    },
+    {
+        id: 112,
+        title: "3 BHK Villa on Rent in Sector 82",
+        location: "Sector 82, Greater Faridabad",
+        sector: "82",
+        monthlyRent: 22000,
+        securityDeposit: 440000,
+        type: "residential",
+        bhk: 3,
+        size: 1500,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "pool", "parking", "security"],
+        features: ["3 Bathrooms", "Garden", "Carport", "Spacious"],
+        description: "Spacious 3 BHK unfurnished villa with private garden in premium gated community.",
+        dateAdded: Date.now() - 259200000,
+        views: 356,
+        builder: "Mansha Group"
+    },
+    {
+        id: 113,
+        title: "1 BHK Unfurnished in Sector 75",
+        location: "Sector 75, Greater Faridabad",
+        sector: "75",
+        monthlyRent: 9000,
+        securityDeposit: 180000,
+        type: "residential",
+        bhk: 1,
+        size: 600,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1462874149175-446339e2e1d8?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1549399542-7e3f8b83ad45?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking", "security"],
+        features: ["1 Bathroom", "Balcony", "Well Connected"],
+        description: "Affordable 1 BHK unfurnished apartment in developing sector with good connectivity.",
+        dateAdded: Date.now() - 345600000,
+        views: 145,
+        builder: "BP Homes Pvt. Ltd"
+    },
+    {
+        id: 114,
+        title: "2 BHK Fully Furnished in Sector 86",
+        location: "Sector 86, Greater Faridabad",
+        sector: "86",
+        monthlyRent: 26000,
+        securityDeposit: 520000,
+        type: "residential",
+        bhk: 2,
+        size: 1250,
+        furnishing: "fully-furnished",
+        images: [
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "pool", "parking", "security"],
+        features: ["2 Bathrooms", "Fully Furnished", "Modern Appliances"],
+        description: "Ready to move 2 BHK fully furnished apartment with all premium amenities included.",
+        dateAdded: Date.now() - 432000000,
+        views: 389,
+        builder: "Omaxe Heights"
+    },
+    {
+        id: 115,
+        title: "Commercial Shop in Sector 85",
+        location: "Sector 85, Greater Faridabad",
+        sector: "85",
+        monthlyRent: 35000,
+        securityDeposit: 700000,
+        type: "commercial",
+        bhk: null,
+        size: 600,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1560607592-735ee62f507f?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1576267423446-16c0db7b63e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking", "security"],
+        features: ["High Traffic Area", "Good Visibility", "Corner Shop"],
+        description: "Prime commercial shop with excellent visibility and high footfall location.",
+        dateAdded: Date.now() - 518400000,
+        views: 512,
+        builder: "Shiv Sai"
+    },
+    {
+        id: 116,
+        title: "2 BHK Semi-Furnished in Sector 88",
+        location: "Sector 88, Greater Faridabad",
+        sector: "88",
+        monthlyRent: 17000,
+        securityDeposit: 340000,
+        type: "residential",
+        bhk: 2,
+        size: 1100,
+        furnishing: "semi-furnished",
+        images: [
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "parking", "security"],
+        features: ["2 Bathrooms", "Balcony", "Kitchen Setup"],
+        description: "Well-maintained 2 BHK semi-furnished with kitchen setup and basic furniture.",
+        dateAdded: Date.now() - 604800000,
+        views: 234,
+        builder: "RPS Palms"
+    },
+    {
+        id: 117,
+        title: "1 BHK Fully Furnished in Sector 81",
+        location: "Sector 81, Greater Faridabad",
+        sector: "81",
+        monthlyRent: 11500,
+        securityDeposit: 230000,
+        type: "residential",
+        bhk: 1,
+        size: 700,
+        furnishing: "fully-furnished",
+        images: [
+            "https://images.unsplash.com/photo-1462874149175-446339e2e1d8?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1549399542-7e3f8b83ad45?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "parking", "security"],
+        features: ["1 Bathroom", "AC", "Fully Furnished"],
+        description: "Compact 1 BHK fully furnished apartment ideal for professionals and bachelors.",
+        dateAdded: Date.now() - 691200000,
+        views: 178,
+        builder: "Nest Dwelling Concept (P) Ltd."
+    },
+    {
+        id: 118,
+        title: "3 BHK Unfurnished in Sector 86",
+        location: "Sector 86, Greater Faridabad",
+        sector: "86",
+        monthlyRent: 32000,
+        securityDeposit: 640000,
+        type: "residential",
+        bhk: 3,
+        size: 1700,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop"
+        ],
+        amenities: ["gym", "pool", "parking", "security", "garden"],
+        features: ["3 Bathrooms", "Garden", "Parking", "Spacious Layout"],
+        description: "Spacious 3 BHK unfurnished apartment with garden and premium amenities.",
+        dateAdded: Date.now() - 777600000,
+        views: 445,
+        builder: "Amolik Housing Pvt. Ltd."
+    },
+    {
+        id: 119,
+        title: "Office Space in Sector 82",
+        location: "Sector 82, Greater Faridabad",
+        sector: "82",
+        monthlyRent: 38000,
+        securityDeposit: 760000,
+        type: "commercial",
+        bhk: null,
+        size: 1000,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1560707566-d4a1d4410495?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking", "security"],
+        features: ["Open Plan", "Well Lit", "Washrooms"],
+        description: "Professional office space with good infrastructure and connectivity.",
+        dateAdded: Date.now() - 864000000,
+        views: 389,
+        builder: "Raghav Nanda Estate & Builders"
+    },
+    {
+        id: 120,
+        title: "2 BHK Apartment in Sector 75",
+        location: "Sector 75, Greater Faridabad",
+        sector: "75",
+        monthlyRent: 13500,
+        securityDeposit: 270000,
+        type: "residential",
+        bhk: 2,
+        size: 1050,
+        furnishing: "unfurnished",
+        images: [
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+        ],
+        amenities: ["parking", "security"],
+        features: ["2 Bathrooms", "Balcony", "Well Maintained"],
+        description: "Budget-friendly 2 BHK unfurnished apartment in established residential area.",
+        dateAdded: Date.now() - 950400000,
+        views: 267,
+        builder: "M M Developers"
+    }
+];
+
 // Make data accessible globally
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         propertiesData,
+        rentalPropertiesData,
         testimonialsData,
         sectorsData,
         buildersData,
@@ -682,4 +1138,11 @@ if (typeof module !== 'undefined' && module.exports) {
         filterProperties,
         getStarRating
     };
+}
+// Confirm file loaded successfully
+if (typeof window !== 'undefined') {
+    window.propertiesDataLoaded = true;
+    console.log('properties.js loaded successfully!');
+    console.log('propertiesData count:', typeof propertiesData !== 'undefined' ? propertiesData.length : 'undefined');
+    console.log('rentalPropertiesData count:', typeof rentalPropertiesData !== 'undefined' ? rentalPropertiesData.length : 'undefined');
 }
