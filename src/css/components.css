@@ -548,3 +548,111 @@
     }
 }
 
+/* ============================================
+   BUILDERS DETAILS SECTION
+   ============================================ */
+
+.builders-details-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f7f5 0%, #ffffff 100%);
+    margin: 60px 0;
+}
+
+.builders-details-section .section-header {
+    margin-bottom: 60px;
+}
+
+.builders-details-section h2 {
+    color: #2d5a3d;
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.builders-details-section p {
+    color: #666;
+    font-size: 18px;
+}
+
+.builders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.builder-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+    border-top: 4px solid #d4a574;
+}
+
+.builder-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.builder-icon {
+    font-size: 48px;
+    color: #d4a574;
+    margin-bottom: 20px;
+}
+
+.builder-name {
+    color: #2d5a3d;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.builder-description {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.builder-meta {
+    margin: 20px 0;
+    padding: 15px 0;
+    border-top: 1px solid #e0ddd6;
+    border-bottom: 1px solid #e0ddd6;
+}
+
+.properties-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #d4a574;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.properties-count i {
+    font-size: 18px;
+}
+
+.builder-card .btn-sm {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 14px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .builders-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ddp-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+

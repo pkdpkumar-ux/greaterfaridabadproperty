@@ -1,6 +1,6 @@
 // Builder Properties Page JavaScript
 
-let filteredBuilderProperties = [...propertiesData];
+let filteredBuilderProperties = [];
 let selectedBuilder = null;
 let currentBuilderSort = 'newest';
 
@@ -9,7 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeBuilderPage() {
+    // Initialize filteredBuilderProperties with all data
+    if (filteredBuilderProperties.length === 0) {
+        filteredBuilderProperties = [...propertiesData];
+    }
+    
     displayBuilderButtons();
+    displayBuilders();
     displayProperties();
     setupFilterEventListeners();
     setupSortListener();
@@ -30,6 +36,32 @@ function displayBuilderButtons() {
     `).join('');
     
     buttonsContainer.innerHTML = html;
+}
+
+function displayBuilders() {
+    const container = document.getElementById('buildersDetailGrid');
+    
+    if (!container) return;
+    
+    const html = buildersData.map(builder => `
+        <div class="builder-card">
+            <div class="builder-icon">
+                <i class="fas fa-building"></i>
+            </div>
+            <h3 class="builder-name">${builder.name}</h3>
+            <p class="builder-description">${builder.description}</p>
+            <div class="builder-meta">
+                <span class="properties-count">
+                    <i class="fas fa-home"></i> ${builder.properties} Properties
+                </span>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="filterByBuilder('${builder.name}')">
+                View Properties
+            </button>
+        </div>
+    `).join('');
+    
+    container.innerHTML = html;
 }
 
 function filterByBuilder(builder) {

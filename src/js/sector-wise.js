@@ -1,6 +1,6 @@
 // Sector-wise Properties Page JavaScript
 
-let filteredSectorProperties = [...propertiesData];
+let filteredSectorProperties = [];
 let selectedSector = null;
 let currentSectorSort = 'newest';
 
@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeSectorPage() {
+    // Initialize filteredSectorProperties with all data
+    if (filteredSectorProperties.length === 0) {
+        filteredSectorProperties = [...propertiesData];
+    }
+    
     displaySectorButtons();
     displayProperties();
     setupFilterEventListeners();

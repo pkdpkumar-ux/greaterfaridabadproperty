@@ -1,6 +1,6 @@
 // Properties Page JavaScript
 
-let filteredProperties = [...propertiesData];
+let filteredProperties = [];
 let currentSort = 'newest';
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -8,16 +8,104 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializePropertiesPage() {
+    // Initialize filteredProperties with all data
+    if (filteredProperties.length === 0) {
+        filteredProperties = [...propertiesData];
+    }
+    
+    // Handle URL query parameters for search filters
+    applySearchQueryFilters();
     displayProperties();
     setupFilterEventListeners();
     setupSortListener();
     updateResultsCount();
 }
 
+/**
+ * Apply filters from URL query parameters (location, type, budget)
+ */
+function applySearchQueryFilters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const location = urlParams.get('location');
+    const type = urlParams.get('type');
+    const budget = urlParams.get('budget');
+    
+    console.log('=== SEARCH FILTERS ===');
+    console.log('Location:', location);
+    console.log('Type:', type);
+    console.log('Budget:', budget);
+    console.log('Total properties available:', propertiesData.length);
+    
+    // If no search params, show all properties
+    if (!location && !type && !budget) {
+        filteredProperties = [...propertiesData];
+        console.log('No filters applied, showing all:', filteredProperties.length);
+        return;
+    }
+    
+    filteredProperties = propertiesData.filter(property => {
+        // Location filter - match sector number or location text
+        if (location && location.trim()) {
+            const locationTrimmed = location.trim();
+            const locationLower = locationTrimmed.toLowerCase();
+            
+            // Extract sector number from input (e.g., "Sector 86" -> "86")
+            const sectorMatch = locationTrimmed.match(/\d+/);
+            const sectorNumber = sectorMatch ? sectorMatch[0] : null;
+            
+            // Try multiple matching strategies
+            const matchesBySectorNumber = sectorNumber && String(property.sector) === sectorNumber;
+            const matchesByFullText = property.location.toLowerCase().includes(locationLower);
+            const matchesLocation = matchesBySectorNumber || matchesByFullText;
+            
+            console.log(`Checking ${property.title}: sector=${property.sector}, location="${property.location}" | input="${location}" | matches=${matchesLocation}`);
+            
+            if (!matchesLocation) return false;
+        }
+        
+        // Type filter - skip if type is empty
+        if (type && type.trim()) {
+            if (property.type !== type.trim()) {
+                console.log(`Type filter rejected: ${property.type} !== ${type}`);
+                return false;
+            }
+        }
+        
+        // Budget filter - skip if budget is empty
+        if (budget && budget.trim()) {
+            const budgetRange = CONFIG.VALIDATION.PRICE_RANGES.find(r => r.value === budget.trim());
+            if (budgetRange) {
+                if (property.price < budgetRange.min || property.price > budgetRange.max) {
+                    console.log(`Budget filter rejected: ${property.price} not in range ${budgetRange.value}`);
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    });
+    
+    console.log('=== FILTERED RESULTS ===');
+    console.log('Matched properties:', filteredProperties.length);
+    filteredProperties.forEach(p => console.log(`  - ${p.title} (Sector ${p.sector})`));
+}
+
 function displayProperties() {
     const grid = document.getElementById('propertiesGrid');
     
     if (!grid) return;
+    
+    // Check if any properties match the filters
+    if (filteredProperties.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+                <i class="fas fa-search" style="font-size: 48px; color: #d4a574; margin-bottom: 20px;"></i>
+                <h3 style="color: #2d5a3d; margin-bottom: 10px;">No Properties Found</h3>
+                <p style="color: #666;">Try adjusting your search filters or browse all properties</p>
+            </div>
+        `;
+        return;
+    }
     
     // Sort properties
     let sorted = [...filteredProperties];

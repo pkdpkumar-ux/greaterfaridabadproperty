@@ -66,7 +66,7 @@ function initializeFeaturedProperties() {
         grid.querySelectorAll('.property-card').forEach(card => {
             card.addEventListener('click', function() {
                 const propertyId = this.getAttribute('data-property-id');
-                window.location.href = `/pages/property-details.html?id=${propertyId}`;
+                window.location.href = `pages/property-details.html?id=${propertyId}`;
             });
         });
     }
@@ -213,7 +213,7 @@ function handleSearch(e) {
     const budget = document.getElementById('searchBudget').value;
     
     // Build query string
-    let query = '/pages/properties.html?';
+    let query = './pages/properties.html?';
     if (location) query += `location=${encodeURIComponent(location)}&`;
     if (type) query += `type=${type}&`;
     if (budget) query += `budget=${budget}&`;
@@ -369,7 +369,10 @@ async function sendContactMessage(data) {
         
         if (response.ok) {
             showToast('Thank you! We will get back to you soon.', 'success');
-        document.getElementById('contactForm').reset();
+            document.getElementById('contactForm').reset();
+        } else {
+            showToast('Error sending message. Please try again.', 'error');
+        }
         
         // In production, send via API
         // await makeApiRequest(`${CONFIG.API_BASE_URL}/contact`, {

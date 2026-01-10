@@ -357,6 +357,11 @@ a:hover {
     font-size: var(--font-size-base);
 }
 
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
 .btn-block {
     width: 100%;
 }
