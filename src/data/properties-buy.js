@@ -482,7 +482,29 @@ const buyPropertiesData = [
         builder: "Shiv Sai",
         mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
     }
-];
+,
+    {
+        id: 21,
+        name: "Test",
+        location: "Sector 69",
+        type: "builder-floor",
+        price: "₹1,000",
+        beds: 1,
+        baths: 1,
+        sqft: "100",
+        image: "/src/assets/images/default-property.jpg",
+        amenities: ['gym', 'pool', 'security'],
+        contact: {
+            name: "Test",
+            phone: "9999098553",
+            email: "pkd@gmail.com"
+        },
+        description: "Test",
+        listType: "sell",
+        floor: "1",
+        furnishing: "unfurnished",
+        submittedAt: "2026-01-11T19:16:17.217547"
+    }];
 
 // For backwards compatibility
 const propertiesData = buyPropertiesData;
@@ -528,26 +550,4 @@ const buildersData = [
         description: "Committed to building sustainable communities with quality construction.",
         properties: 2
     }
-,
-    {
-        id: 21,
-        name: "Pawan",
-        location: "Sector 68",
-        type: "builder-floor",
-        price: "₹1 Cr",
-        beds: 3,
-        baths: 1,
-        sqft: "1000",
-        image: "/src/assets/images/default-property.jpg",
-        amenities: ['pool', 'parking', 'security'],
-        contact: {
-            name: "Pawan",
-            phone: "9999098553",
-            email: "pkd@gmail.com"
-        },
-        description: "Test property",
-        listType: "sell",
-        floor: "2",
-        furnishing: "semi-furnished",
-        submittedAt: "2026-01-11T19:07:44.901106"
-    }];
+];
