@@ -460,25 +460,25 @@ const buyPropertiesData = [
     },
     {
         id: 20,
-        title: "4 BHK Luxury Penthouse in Sector 86",
+        title: "3+1 BHK Flat in Ozone Park Apartments",
         location: "Sector 86, Greater Faridabad",
         sector: "86",
-        price: 14500000,
-        priceDisplay: "1.45 Cr",
+        price: 11000000,
+        priceDisplay: "1.1 Cr",
         type: "residential",
-        bhk: 4,
-        size: 2400,
-        floor: 12,
+        bhk: 3+1,
+        size: 1709,
+        floor: 4,
         totalFloors: 15,
         propertyAge: "New Construction",
         images: [
-            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop",
+            "/src/assets/images/OzonePark1.jpg",
             "https://images.unsplash.com/photo-1546439999-a7e0b75ceaea?w=800&h=500&fit=crop",
             "https://images.unsplash.com/photo-1559592413-915581eaa923?w=800&h=500&fit=crop"
         ],
         amenities: ["gym", "pool", "parking", "security", "concierge"],
         features: ["4 Bathrooms", "Terrace", "Modular Kitchen", "Smart Home", "View"],
-        description: "Ultra-luxury 4 BHK penthouse with premium finishes, exclusive amenities, and panoramic views.",
+        description: "Ultra-luxury 3+1 BHK with premium finishes, exclusive amenities, and panoramic views.",
         builder: "Shiv Sai",
         mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
     }
@@ -528,4 +528,26 @@ const buildersData = [
         description: "Committed to building sustainable communities with quality construction.",
         properties: 2
     }
-];
+,
+    {
+        id: 21,
+        name: "Pawan",
+        location: "Sector 68",
+        type: "builder-floor",
+        price: "₹1 Cr",
+        beds: 3,
+        baths: 1,
+        sqft: "1000",
+        image: "/src/assets/images/default-property.jpg",
+        amenities: ['pool', 'parking', 'security'],
+        contact: {
+            name: "Pawan",
+            phone: "9999098553",
+            email: "pkd@gmail.com"
+        },
+        description: "Test property",
+        listType: "sell",
+        floor: "2",
+        furnishing: "semi-furnished",
+        submittedAt: "2026-01-11T19:07:44.901106"
+    }];
