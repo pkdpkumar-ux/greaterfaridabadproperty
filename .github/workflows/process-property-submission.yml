@@ -1,0 +1,83 @@
+name: Process Property Submission
+
+on:
+  repository_dispatch:
+    types: [property_submitted]
+
+jobs:
+  process-property:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Property Data
+        id: property
+        run: |
+          echo "Property submission received"
+          echo "Owner: ${{ github.event.client_payload.ownerName }}"
+
+      - name: Add Property to Database
+        run: |
+          python3 .github/scripts/add-property.py '${{ toJson(github.event.client_payload) }}'
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add src/data/properties-buy.js
+          git commit -m "Auto: Add new property listing - ${{ github.event.client_payload.ownerName }}" || echo "No changes to commit"
+          git push
+
+      - name: Send Confirmation Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Property Listed Successfully - ${{ github.event.client_payload.propertyType }}"
+          to: ${{ github.event.client_payload.ownerEmail }}
+          from: "noreply@greaterfaridabadproperty.com"
+          body: |
+            Dear ${{ github.event.client_payload.ownerName }},
+
+            Your property listing has been successfully submitted and added to our platform!
+
+            Property Details:
+            - Type: ${{ github.event.client_payload.propertyType }}
+            - Location: Sector ${{ github.event.client_payload.sector }}
+            - Size: ${{ github.event.client_payload.propertySize }} sq ft
+
+            Your property is now visible to potential buyers/renters on our website.
+
+            Best Regards,
+            Greater Faridabad Property Team
+            Visit: https://greaterfaridabadproperty.in
+
+      - name: Notify Admin
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "New Property Submitted - ${{ github.event.client_payload.propertyType }}"
+          to: greaterfaridabadproperty@gmail.com
+          from: "noreply@greaterfaridabadproperty.com"
+          body: |
+            New Property Listing Submitted:
+
+            Owner: ${{ github.event.client_payload.ownerName }}
+            Email: ${{ github.event.client_payload.ownerEmail }}
+            Phone: ${{ github.event.client_payload.ownerPhone }}
+
+            Property Type: ${{ github.event.client_payload.propertyType }}
+            Listing Type: ${{ github.event.client_payload.listType }}
+            Sector: ${{ github.event.client_payload.sector }}
+            Size: ${{ github.event.client_payload.propertySize }} sq ft
+            BHK: ${{ github.event.client_payload.bhk }}
+
+            Submitted: ${{ github.event.client_payload.submittedAt }}

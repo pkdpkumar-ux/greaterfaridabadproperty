@@ -2,10 +2,12 @@
   "name": "greaterfaridabadproperty",
   "version": "1.0.0",
   "description": "Greater Faridabad Property - Premium Real Estate Website",
-  "main": "public/index.html",
+  "main": "server.js",
   "scripts": {
-    "start": "python -m http.server 8000",
-    "dev": "python -m http.server 8000",
+    "start": "node server.js",
+    "dev": "node server.js",
+    "web": "python -m http.server 8000",
+    "server": "node server.js",
     "build": "echo 'No build required for static site'",
     "test": "echo 'No tests configured yet'"
   },
@@ -23,8 +25,13 @@
     "url": "https://github.com/yourusername/greaterfaridabadproperty.git"
   },
   "homepage": "https://greaterfaridabadproperty.in",
-  "devDependencies": {},
   "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
     "font-awesome": "^6.4.0"
-  }
+  },
+  "devDependencies": {}
 }

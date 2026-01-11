@@ -647,6 +647,9 @@
         </div>
     </nav>
 
+    <!-- Navigation Script -->
+    <script src="../src/js/navigation.js"></script>
+
     <!-- Hero Section -->
     <section class="list-property-hero">
         <div class="container">
@@ -1176,9 +1179,6 @@
 
             submitBtn.disabled = true;
 
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
             // Collect form data
             const formData = new FormData(this);
             const data = {
@@ -1202,19 +1202,127 @@
 
             console.log('Form Data:', data);
 
-            submitBtn.disabled = false;
+            try {
+                // Show immediate success message
+                const successMsg = 'Your property has been successfully submitted! Our team will verify and contact you soon.';
+                showAlert(successMsg, 'success');
 
-            // Show success message
-            showAlert('Your property has been successfully submitted! Our team will verify and contact you soon.', 'success');
+                // Send to API (if backend is running) - don't wait
+                sendPropertyToAPI(data).then(apiResult => {
+                    if (apiResult && apiResult.success) {
+                        console.log('✓ Property submitted to API for database update');
+                    }
+                }).catch(err => {
+                    console.warn('API submission error:', err);
+                });
 
-            // Clear form
-            this.reset();
-            document.getElementById('imagePreviewGrid').innerHTML = '';
-            document.getElementById('imageCount').textContent = '';
-            localStorage.removeItem('propertyListingDraft');
+                // Send email via FormSubmit.co - don't wait
+                sendPropertyListingEmail(data).catch(err => {
+                    console.warn('Email sending warning:', err);
+                });
+                
+                submitBtn.disabled = false;
 
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Clear form
+                this.reset();
+                document.getElementById('imagePreviewGrid').innerHTML = '';
+                document.getElementById('imageCount').textContent = '';
+                localStorage.removeItem('propertyListingDraft');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error submitting property:', error);
+                submitBtn.disabled = false;
+                showAlert('Failed to submit property. Please try again.', 'error');
+            }
+        }
+
+        // Send Property Listing Email
+        async function sendPropertyListingEmail(data) {
+            const emailContent = `
+NEW PROPERTY LISTING SUBMISSION
+
+=== OWNER DETAILS ===
+Name: ${data.ownerName}
+Email: ${data.ownerEmail}
+Phone: ${data.ownerPhone}
+
+=== PROPERTY DETAILS ===
+Listing Type: ${data.listType === 'sell' ? 'SELL' : 'RENT'}
+Property Type: ${data.propertyType}
+Sector: ${data.sector}
+Size: ${data.propertySize} sq ft
+BHK: ${data.bhk}
+Floor: ${data.floorNumber}
+Furnishing: ${data.furnishing}
+
+${data.listType === 'sell' ? `=== SALE DETAILS ===
+Expected Price: ₹${parseInt(data.price).toLocaleString('en-IN')}
+` : `=== RENTAL DETAILS ===
+Monthly Rent: ₹${parseInt(data.monthlyRent).toLocaleString('en-IN')}
+Security Deposit: ₹${parseInt(data.securityDeposit).toLocaleString('en-IN')}
+`}
+
+=== AMENITIES ===
+${data.amenities.length > 0 ? data.amenities.join(', ') : 'None'}
+
+=== DESCRIPTION ===
+${data.description || 'Not provided'}
+
+=== SUBMISSION TIME ===
+${new Date(data.submittedAt).toLocaleString('en-IN')}
+            `;
+
+            // Send email using FormSubmit.co endpoint
+            const formData = new FormData();
+            formData.append('name', data.ownerName);
+            formData.append('email', data.ownerEmail);
+            formData.append('phone', data.ownerPhone);
+            formData.append('subject', `New Property Listing - ${data.listType.toUpperCase()} - ${data.propertyType} in Sector ${data.sector}`);
+            formData.append('message', emailContent);
+            formData.append('_captcha', 'false'); // Disable captcha for backend submission
+            formData.append('_next', window.location.href); // Redirect back after submission
+
+            const response = await fetch('https://formsubmit.co/greaterfaridabadproperty@gmail.com', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Email sending failed');
+            }
+
+            return response.json();
+        }
+
+        // Send Property to API (to update properties file via GitHub)
+        async function sendPropertyToAPI(data) {
+            try {
+                const apiUrl = 'http://localhost:3001/api/property/submit';
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    console.warn('API submission warning:', response.statusText);
+                    // Don't throw error - continue with email
+                }
+
+                const result = await response.json();
+                console.log('API Response:', result);
+                return result;
+
+            } catch (error) {
+                console.warn('API submission not available (backend server not running):', error.message);
+                // Don't throw error - email submission will still work
+                return null;
+            }
         }
 
         // Handle Save Draft
@@ -1316,6 +1424,9 @@
             const alertEl = document.getElementById('alertMessage');
             alertEl.textContent = message;
             alertEl.className = `alert ${type} show`;
+            
+            // Scroll to alert
+            alertEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
             setTimeout(() => {
                 alertEl.classList.remove('show');

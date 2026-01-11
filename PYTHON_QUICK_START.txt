@@ -1,0 +1,125 @@
+# Python Flask Backend - Quick Start
+
+## 3 Steps to Run Backend
+
+### Step 1: Install Dependencies (One Time Only)
+```powershell
+pip install -r requirements.txt
+```
+
+Wait for completion:
+```
+Successfully installed Flask Flask-CORS requests python-dotenv Werkzeug
+```
+
+### Step 2: Start Backend Server
+```powershell
+python app.py
+```
+
+You should see:
+```
+╔════════════════════════════════════════════════════════════╗
+║  🚀 Property Listing API Server (Flask)                   ║
+╠════════════════════════════════════════════════════════════╣
+║  Server Running on: http://localhost:3001                 ║
+║  API Endpoint: POST http://localhost:3001/api/property/submit ║
+║  Health Check: GET http://localhost:3001/api/health       ║
+║  Info: GET http://localhost:3001/api/info                 ║
+╚════════════════════════════════════════════════════════════╝
+
+✓ GitHub Integration: Enabled
+```
+
+### Step 3: Keep Website Running (New Terminal)
+```powershell
+python -m http.server 8000
+```
+
+Then visit: **http://localhost:8000/pages/list-property.html**
+
+## That's It! 🎉
+
+- ✅ Backend API running on port 3001
+- ✅ Website running on port 8000
+- ✅ GitHub integration active
+- ✅ Property submissions will auto-update
+
+## Testing Submission
+
+1. Go to: http://localhost:8000/pages/list-property.html
+2. Fill the form
+3. Upload at least 1 image
+4. Click "Submit Property Listing"
+5. Check terminal output - should show:
+   ```
+   ✓ Property submission received:
+     Owner: John Doe
+     Type: residential
+     Sector: 78
+     ✓ GitHub workflow triggered successfully
+   ```
+
+## Terminals You Need
+
+| Terminal | Command | Purpose |
+|----------|---------|---------|
+| Terminal 1 | `python app.py` | Backend API Server (Port 3001) |
+| Terminal 2 | `python -m http.server 8000` | Website (Port 8000) |
+
+## If Something Goes Wrong
+
+### "No module named 'flask'"
+```powershell
+pip install -r requirements.txt
+```
+
+### "Port 3001 already in use"
+Edit `.env` and change `PORT=3002` (or another number)
+
+### "Connection refused" error
+Make sure Terminal 1 is running: `python app.py`
+
+### Check if backend is working
+Visit: http://localhost:3001/api/health
+
+Should show: `{"status": "OK", ...}`
+
+## Files Overview
+
+- **app.py** - Flask backend (the API server)
+- **requirements.txt** - Dependencies list
+- **setup.py** - Auto-setup script
+- **start-backend.bat** - Windows batch file
+- **.env** - Configuration (already set up)
+
+## What Happens on Submission
+
+```
+User Form → Flask API → GitHub Actions → Python Script → properties-buy.js Updated
+```
+
+All automatic! ✨
+
+## Environment Setup
+
+Your `.env` already has:
+- ✅ GITHUB_TOKEN (for auto-update)
+- ✅ GITHUB_REPO (your repository)
+- ✅ PORT=3001 (API port)
+
+No additional configuration needed!
+
+## Now Go!
+
+```powershell
+# Terminal 1
+python app.py
+
+# Terminal 2 (New)
+python -m http.server 8000
+```
+
+Visit: http://localhost:8000/pages/list-property.html
+
+**Everything is ready! 🚀**

@@ -19,12 +19,33 @@ A modern, responsive real estate property website for Greater Faridabad. Built w
   - Call-to-Action buttons
   - WhatsApp floating button
 
-- **Properties Page**
-  - Grid layout with property cards
+- **Buy Properties Page**
+  - Grid layout with 20 buy/sale properties
   - Advanced filters (price, BHK, amenities, type)
   - Sorting options (price, newest, popular)
   - Responsive sidebar filters
   - Search functionality
+
+- **Rent Properties Page**
+  - Grid layout with 20 rental properties
+  - Advanced filters (price, BHK, amenities, type)
+  - Sorting options (monthly rent, newest, popular)
+  - Responsive sidebar filters
+  - Search functionality
+
+- **List Your Property Page** ⭐ NEW
+  - Rent/Sell toggle switch
+  - Dynamic form labels based on listing type
+  - Owner details form (name, email, phone)
+  - Property details (type, location, size, BHK, floor, furnishing)
+  - Dynamic pricing section (price for sale, monthly rent + security deposit for rent)
+  - Image upload with drag-drop support (up to 5 images)
+  - Amenities checkboxes
+  - Property description textarea
+  - Save as draft functionality (localStorage)
+  - Form validation and error messages
+  - Success confirmation
+  - Location limited to Sectors 68-89 + Other
 
 - **Property Details Page**
   - Image gallery with thumbnails
@@ -40,18 +61,19 @@ A modern, responsive real estate property website for Greater Faridabad. Built w
   - Additional filters and sorting
 
 - **Builder Properties**
+  - Grid of 8 builder cards with information
   - Filter by builder
-  - Builder-specific property listings
+  - Builder-specific property listings (8 builders: Mansha Group, Shiv Sai, RSI Buildcon, Mawals Builders, JRD Properties, AQ Buildtech, Land Solutions, Pragati Associates)
   - Advanced filtering options
 
-- **About Us Page**
+- **About US Page**
   - Company overview
   - Mission & Vision
   - Team information
   - Statistics and achievements
   - Why Choose Us section
 
-- **Contact Us Page**
+- **Contact US Page**
   - Contact form with validation
   - Office location and hours
   - Phone and email contact
@@ -101,13 +123,16 @@ greaterfaridabadproperty/
 │   ├── js/
 │   │   ├── config.js           # Configuration & utilities
 │   │   ├── main.js             # Main JavaScript
-│   │   ├── properties-page.js  # Properties page logic
+│   │   ├── properties-page.js  # Properties page logic (buy properties)
+│   │   ├── rent-page.js        # Rent page logic
 │   │   ├── property-details.js # Property details logic
 │   │   ├── sector-wise.js      # Sector filter logic
 │   │   ├── builder-properties.js # Builder filter logic
 │   │   └── contact.js          # Contact form logic
 │   ├── data/
-│   │   └── properties.js       # Property data & testimonials
+│   │   ├── properties-buy.js   # Buy/Sale property data (20 properties)
+│   │   ├── rental-properties.json # Rental property data (20 properties)
+│   │   └── properties.js       # Helper functions & testimonials
 │   ├── assets/
 │   │   ├── images/             # Image directory
 │   │   └── icons/              # Icon directory
@@ -158,6 +183,147 @@ npx http-server
 ```
 http://localhost:8000
 ```
+
+## Property Data Structure & Separation
+
+### Overview
+The Greater Faridabad Property system has been restructured to completely separate Buy and Rent properties, eliminating confusion between the two property types.
+
+### Data File Separation
+
+#### Buy Properties
+- **File:** `/src/data/properties-buy.js`
+- Contains 20 properties (IDs 1-20) available for **PURCHASE/SALE**
+- Variable: `buyPropertiesData` (also aliased as `propertiesData` for backwards compatibility)
+- Types: Residential, Commercial, Plot
+- Price range: ₹22 Lakh to ₹2.5 Crore
+- Price field: `price` (in rupees)
+
+#### Rent Properties
+- **File:** `/src/data/rental-properties.json`
+- Contains 20 properties (IDs 101-120) available for **RENT**
+- Loaded dynamically via Fetch API on rent page
+- Types: Residential, Commercial
+- Rent range: ₹7,500 to ₹30,000/month
+- Price field: `monthlyRent` (rental amount per month)
+
+#### Helper Files
+- `/src/data/properties.js` - Legacy file (kept for reference, now contains helper functions only)
+- No longer contains property data; contains only utility functions
+
+### Page Updates
+
+**Buy Properties Pages** (use properties-buy.js):
+- index.html - Homepage with featured properties
+- pages/properties.html - Browse all buy properties
+- pages/property-details.html - View details of buy properties
+- pages/sector-wise.html - Filter buy properties by sector
+- pages/builder-properties.html - Filter buy properties by builder
+
+**Rent Properties Pages** (use rental-properties.json):
+- pages/rent.html - Browse all rental properties with filters
+  - Loads from JSON via Fetch API
+  - Separate filtering/sorting for rentals
+  - Shows monthly rent, security deposit
+
+**Navigation Pages** (no property data needed):
+- pages/about.html
+- pages/contact.html
+
+### Key Differences
+
+| Aspect | Buy Properties | Rent Properties |
+|--------|---|---|
+| **Data Source** | properties-buy.js | rental-properties.json |
+| **Variable Name** | buyPropertiesData / propertiesData | Loaded via fetch() |
+| **Property IDs** | 1-20 | 101-120 |
+| **Price Field** | price (one-time cost) | monthlyRent (recurring) |
+| **Common Field** | priceDisplay | (not used for rent) |
+| **Deposit Field** | (not used) | securityDeposit |
+| **Type Examples** | residential, commercial, plot | residential, commercial |
+| **URL Parameter** | type=buy (default) | type=rent |
+
+### Property Detail Pages
+
+**How it works:**
+1. User clicks "View Details" on any property
+2. Property-details.html loads with `?id=X&type=buy` or `?type=rent`
+3. JavaScript checks the type parameter and loads appropriate data
+4. Details page displays either buy or rent property information
+
+**Example URLs:**
+- Buy property: `property-details.html?id=5&type=buy`
+- Rent property: `property-details.html?id=110&type=rent`
+
+### Data Structure Examples
+
+**Buy Property** (properties-buy.js):
+```javascript
+{
+    id: 1,
+    title: "Luxury Apartment in Sector 78",
+    location: "Sector 78, Greater Faridabad",
+    price: 4500000,
+    priceDisplay: "45 Lakh",
+    type: "residential",
+    bhk: 2,
+    size: 1200,
+    floor: 5,
+    totalFloors: 12,
+    propertyAge: "New Construction"
+    // ... more fields
+}
+```
+
+**Rent Property** (rental-properties.json):
+```javascript
+{
+    id: 101,
+    title: "2 BHK Apartment on Rent in Sector 78",
+    location: "Sector 78, Greater Faridabad",
+    monthlyRent: 15000,
+    securityDeposit: 300000,
+    type: "residential",
+    bhk: 2,
+    size: 1200,
+    furnishing: "unfurnished"
+    // ... more fields
+}
+```
+
+### Benefits
+
+✅ **No Confusion** - Clear separation between buy and rent properties
+✅ **Independent Updates** - Can modify buy or rent properties without affecting the other
+✅ **Scalability** - Easy to add more properties to either category
+✅ **Performance** - Rent page loads only rent data via JSON, not all 40+ properties
+✅ **Backwards Compatible** - buyPropertiesData is aliased as propertiesData
+✅ **Clear Data Structure** - Each property type has appropriate fields (price vs monthlyRent)
+
+### Rent Page Data Loading
+
+The rent page uses a **two-tier data loading strategy**:
+
+1. **Tier 1: Global Variable (Primary)**
+   - If `rentalPropertiesData` is available globally from `properties.js`, use it
+   - Maintains compatibility with original data structure
+
+2. **Tier 2: JSON File (Fallback)**
+   - If the global variable is not available, fetch properties from `src/data/rental-properties.json`
+   - The JSON file contains all 20 rental properties (IDs 101-120)
+   - Uses the Fetch API with proper error handling
+
+This ensures the rent page works reliably even if there are timing issues with script loading or caching problems.
+
+### Rent Page Features
+
+✅ Property listing with 20 properties
+✅ Filtering by: Type, Price, BHK, Furnishing, Amenities
+✅ Sorting by: Newest, Price (Low-High), Price (High-Low), Popular
+✅ Property cards with images and details
+✅ "View Details" links to property details page
+✅ Reset filters button
+✅ Results count display
 
 ## Configuration
 

@@ -12,14 +12,19 @@ class PropertyDetailsManager {
         // Get property ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const propertyId = parseInt(urlParams.get('id'));
-        this.propertyType = urlParams.get('type') || 'sale';
+        this.propertyType = urlParams.get('type') || 'buy';
+
+        console.log('Property Details Loading:', { propertyId, propertyType: this.propertyType });
 
         // Get property data
         if (this.propertyType === 'rent') {
             this.currentProperty = rentalPropertiesData.find(p => p.id === propertyId);
         } else {
+            // For 'buy' or 'sale' type, use buyPropertiesData or propertiesData
             this.currentProperty = propertiesData.find(p => p.id === propertyId);
         }
+
+        console.log('Found Property:', this.currentProperty);
 
         if (!this.currentProperty) {
             document.body.innerHTML = '<div class="container"><h2>Property not found</h2></div>';
@@ -142,7 +147,10 @@ class PropertyDetailsManager {
         }
 
         // Description
-        document.getElementById('detailDescription').textContent = this.currentProperty.description;
+        const descriptionElement = document.getElementById('detailDescription');
+        if (descriptionElement) {
+            descriptionElement.textContent = this.currentProperty.description || 'No description available.';
+        }
 
         // Map
         if (this.currentProperty.mapLink) {
