@@ -484,25 +484,23 @@ const buyPropertiesData = [
     },
     {
         id: 21,
-        name: "Pawan",
-        location: "Sector 70",
+        title: "Yuvraj's Property",
+        location: "Sector 70, Greater Faridabad",
+        sector: "70",
+        price: 11111,
+        priceDisplay: "₹11,111",
         type: "apartment",
-        price: "₹11,111",
-        beds: 4,
-        baths: 1,
-        sqft: "100",
-        image: "/src/assets/images/default-property.jpg",
-        amenities: ['gym', 'water'],
-        contact: {
-            name: "Pawan",
-            phone: "9999098553",
-            email: "pkd@gmail.com"
-        },
+        bhk: 1,
+        size: 100,
+        floor: 1,
+        totalFloors: 5,
+        propertyAge: "User Submitted",
+        images: ["/src/assets/images/default-property.jpg"],
+        amenities: ["gym", "parking"],
+        features: ["User Submitted Property"],
         description: "Test",
-        listType: "sell",
-        floor: "1",
-        furnishing: "unfurnished",
-        submittedAt: "2026-01-11T19:19:48.655233"
+        builder: "User",
+        mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
     }
 ];
 
