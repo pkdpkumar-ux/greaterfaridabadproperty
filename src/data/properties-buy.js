@@ -481,21 +481,20 @@ const buyPropertiesData = [
         description: "Ultra-luxury 3+1 BHK with premium finishes, exclusive amenities, and panoramic views.",
         builder: "Shiv Sai",
         mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
-    }
-,
+    },
     {
         id: 21,
-        name: "Test",
-        location: "Sector 69",
-        type: "builder-floor",
-        price: "₹1,000",
-        beds: 1,
+        name: "Pawan",
+        location: "Sector 70",
+        type: "apartment",
+        price: "₹11,111",
+        beds: 4,
         baths: 1,
         sqft: "100",
         image: "/src/assets/images/default-property.jpg",
-        amenities: ['gym', 'pool', 'security'],
+        amenities: ['gym', 'water'],
         contact: {
-            name: "Test",
+            name: "Pawan",
             phone: "9999098553",
             email: "pkd@gmail.com"
         },
@@ -503,8 +502,9 @@ const buyPropertiesData = [
         listType: "sell",
         floor: "1",
         furnishing: "unfurnished",
-        submittedAt: "2026-01-11T19:16:17.217547"
-    }];
+        submittedAt: "2026-01-11T19:19:48.655233"
+    }
+];
 
 // For backwards compatibility
 const propertiesData = buyPropertiesData;
