@@ -250,7 +250,11 @@ def format_property_object(data):
         floor: {data.get('floorNumber', '0').replace('+', '').split()[0] if data.get('floorNumber') else 0},
         totalFloors: 5,
         propertyAge: "User Submitted",
-        images: ["/src/assets/images/default-property.jpg"],
+        images: [
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+        ],
         amenities: [{amenities_str}],
         features: ["User Submitted Property"],
         description: "{data.get('description', 'No description provided')}",
