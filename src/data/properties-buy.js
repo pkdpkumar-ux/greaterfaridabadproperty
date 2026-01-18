@@ -16,7 +16,7 @@ const buyPropertiesData = [
         totalFloors: 14,
         propertyAge: "New Construction",
         images: [
-            "/src/assets/images/Summer_Palm.jpg",
+            "/src/assets/images/Summer_palm.jpg",
         ],
         amenities: ["gym", "pool", "parking", "security"],
         features: ["2 Bathrooms", "Balcony", "Modular Kitchen", "Floor Facing"],
