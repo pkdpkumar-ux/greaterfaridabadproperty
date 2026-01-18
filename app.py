@@ -103,10 +103,90 @@ def api_info():
         'framework': 'Flask',
         'endpoints': {
             'submit': 'POST /api/property/submit',
+            'send-email': 'POST /api/send-email',
             'health': 'GET /api/health',
             'info': 'GET /api/info'
         }
     }), 200
+
+
+@app.route('/api/send-email', methods=['POST'])
+def send_email():
+    """
+    Send email through FormSubmit.co service
+    This endpoint receives form data and forwards it to FormSubmit.co
+    """
+    try:
+        data = request.get_json()
+        
+        # Validate required fields
+        required_fields = ['email', 'name', 'message']
+        for field in required_fields:
+            if field not in data or not data[field]:
+                return jsonify({
+                    'success': False,
+                    'message': f'Missing required field: {field}'
+                }), 400
+        
+        # Validate email format
+        if not re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]+$', data.get('email', '')):
+            return jsonify({
+                'success': False,
+                'message': 'Invalid email format'
+            }), 400
+        
+        # Log the submission
+        print(f"\n✓ Email request received:")
+        print(f"  From: {data.get('name')} ({data.get('email')})")
+        print(f"  Type: {data.get('type', 'general')}")
+        
+        # Forward to FormSubmit.co
+        formsubmit_url = 'https://formsubmit.co/greaterfaridabadproperty@gmail.com'
+        
+        # Prepare form data for FormSubmit
+        form_data = {
+            'name': data.get('name'),
+            'email': data.get('email'),
+            'phone': data.get('phone', ''),
+            'subject': data.get('subject', 'Contact from Greater Faridabad Property'),
+            'propertyType': data.get('propertyType', ''),
+            'message': data.get('message'),
+            '_subject': data.get('subject', f"New {data.get('type', 'Contact')} from {data.get('name')}"),
+            '_reply_to': data.get('email'),
+            '_captcha': 'false'
+        }
+        
+        # Send to FormSubmit
+        response = requests.post(formsubmit_url, data=form_data, timeout=10)
+        
+        if response.status_code == 200:
+            print(f"  ✓ Email sent successfully")
+            return jsonify({
+                'success': True,
+                'message': 'Email sent successfully'
+            }), 200
+        else:
+            print(f"  ✗ FormSubmit response: {response.status_code}")
+            return jsonify({
+                'success': False,
+                'message': 'Failed to send email',
+                'error': f'FormSubmit returned {response.status_code}'
+            }), 500
+    
+    except requests.exceptions.RequestException as e:
+        print(f"✗ Error sending email: {str(e)}")
+        return jsonify({
+            'success': False,
+            'message': 'Error sending email',
+            'error': str(e)
+        }), 500
+    except Exception as e:
+        print(f"✗ Unexpected error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'message': 'Unexpected error',
+            'error': str(e)
+        }), 500
 
 
 def trigger_github_workflow(property_data, token, repo):

@@ -52,32 +52,33 @@ async function sendContactForm(data) {
     try {
         showToast('Sending your message...', 'info');
         
-        // Prepare data for Formspree
-        const formData = new FormData();
-        formData.append('fullName', data.fullName);
-        formData.append('email', data.email);
-        formData.append('phone', data.phone);
-        formData.append('subject', data.subject);
-        formData.append('propertyType', data.propertyType);
-        formData.append('message', data.message);
-        formData.append('_subject', `New Contact Message: ${data.subject}`);
-        formData.append('_reply_to', data.email);
-        
-        // Send via Formspree
-        const response = await fetch(CONFIG.FORMSPREE_ENDPOINT, {
+        // Send via Backend API
+        const response = await fetch(CONFIG.SEND_EMAIL_ENDPOINT, {
             method: 'POST',
-            body: formData,
             headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            }
+            },
+            body: JSON.stringify({
+                name: data.fullName,
+                email: data.email,
+                phone: data.phone,
+                subject: data.subject,
+                propertyType: data.propertyType,
+                message: data.message,
+                type: 'contact'
+            })
         });
         
-        if (response.ok) {
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
             showToast('Thank you for contacting us! We will get back to you soon.', 'success');
             document.getElementById('contactForm').reset();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
             showToast('Error sending message. Please try again.', 'error');
+            console.error('Email error:', result);
         }
         
     } catch (error) {

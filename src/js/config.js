@@ -2,16 +2,16 @@
 
 const CONFIG = {
     // API Endpoints
-    API_BASE_URL: 'https://api.greaterfaridabadproperty.in',
+    API_BASE_URL: 'http://localhost:3001',
     
     // Contact Information
     PHONE: '+91-9999098553',
     EMAIL: 'greaterfaridabadproperty@gmail.com',
     WHATSAPP: '+91-9999098553',
     
-    // Email Configuration
-    EMAIL_SERVICE: 'FormSubmit', // Using FormSubmit.co for email delivery
-    FORMSPREE_ENDPOINT: 'https://formsubmit.co/greaterfaridabadproperty@gmail.com', // Direct email - no setup needed!
+    // Email Configuration - Using Backend API
+    EMAIL_SERVICE: 'Backend', // Using Flask backend for reliable email delivery
+    SEND_EMAIL_ENDPOINT: 'http://localhost:3001/api/send-email',
     EMAIL_SERVICE_ID: 'your_service_id',
     EMAIL_TEMPLATE_ID: 'your_template_id',
     EMAIL_PUBLIC_KEY: 'your_public_key',

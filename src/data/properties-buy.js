@@ -17,11 +17,10 @@ const buyPropertiesData = [
         propertyAge: "New Construction",
         images: [
             "/src/assets/images/Summer_Palm.jpg",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
         ],
         amenities: ["gym", "pool", "parking", "security"],
         features: ["2 Bathrooms", "Balcony", "Modular Kitchen", "Floor Facing"],
-        description: "Beautiful 2 BHK apartment with modern amenities and excellent ventilation. Situated in the heart of Sector 78 with proximity to schools, hospitals, and shopping malls.",
+        description: "Beautiful 2 BHK apartment with modern amenities and excellent ventilation. Situated in the heart of Sector 86 with proximity to schools, hospitals, and shopping malls.",
         builder: "Summerpalm Residency",
     },
     {
@@ -38,9 +37,7 @@ const buyPropertiesData = [
         totalFloors: 4,
         propertyAge: "New Construction",
         images: [
-            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop"
+            "/src/assets/images/Builder_Floor.jpg",
         ],
         amenities: ["parking", "security", "garden"],
         features: ["3 Bathrooms", "Parking Space", "Independent"],
@@ -61,9 +58,7 @@ const buyPropertiesData = [
         totalFloors: 3,
         propertyAge: "New Construction",
         images: [
-            "https://images.unsplash.com/photo-1560607592-735ee62f507f?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1576267423446-16c0db7b63e2?w=800&h=500&fit=crop"
+            "/src/assets/images/WS.jpg",
         ],
         amenities: ["parking", "security", "24/7 Access"],
         features: ["Open Space", "Washrooms", "Pantry", "High Traffic Area"],
@@ -72,21 +67,19 @@ const buyPropertiesData = [
     },
     {
         id: 4,
-        title: "Residential Plot in Sector 77",
-        location: "Sector 77, Greater Faridabad",
-        sector: "77",
-        price: 45000000,
-        priceDisplay: "4 CR 50 Lakh",
+        title: "Residential Plot in Sector All sectors",
+        location: "Sector 85, Greater Faridabad",
+        sector: "85",
+        price: 40000000,
+        priceDisplay: "4 CR",
         type: "plot",
         bhk: null,
-        size: 538,
+        size: 250,
         floor: null,
         totalFloors: null,
         propertyAge: "Vacant Land",
         images: [
-            "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1595255707802-e92b5a74e5b7?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop"
+            "/src/assets/images/Plot.jpg",
         ],
         amenities: [],
         features: ["Corner Plot", "Fenced", "Clear Title"],
@@ -107,9 +100,7 @@ const buyPropertiesData = [
         totalFloors: 8,
         propertyAge: "12 Year",
         images: [
-            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1546439999-a7e0b75ceaea?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1559592413-915581eaa923?w=800&h=500&fit=crop"
+            "/src/assets/images/Omaxe.jpg",
         ],
         amenities: ["gym", "pool", "parking", "security", "concierge"],
         features: ["4 Bathrooms", "Terrace", "Modular Kitchen", "Smart Home"],
@@ -118,34 +109,11 @@ const buyPropertiesData = [
     },
     {
         id: 6,
-        title: "2 BHK Apartment in Sector 81",
-        location: "Sector 81, Greater Faridabad",
-        sector: "81",
-        price: 4200000,
-        priceDisplay: "42 Lakh",
-        type: "residential",
-        bhk: 2,
-        size: 1100,
-        floor: 4,
-        totalFloors: 10,
-        propertyAge: "1 Year Old",
-        images: [
-            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
-        ],
-        amenities: ["gym", "parking", "security"],
-        features: ["2 Bathrooms", "Balcony", "Lift", "Water Storage"],
-        description: "Well-maintained 2 BHK with excellent build quality. Active residential community with regular events and activities.",
-        builder: "RPS Palms",
-    },
-    {
-        id: 7,
         title: "Residential Plot in Sector 75 76",
         location: "Sector 75, Greater Faridabad",
         sector: "75",
-        price: 40000000,
-        priceDisplay: "4 CR",
+        price: 35000000,
+        priceDisplay: "3.5 CR",
         type: "plot",
         bhk: null,
         size: 250,
@@ -153,9 +121,7 @@ const buyPropertiesData = [
         totalFloors: null,
         propertyAge: "BPTP Parklands Plot",
         images: [
-            "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1601612628319-48a264a8bc81?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop"
+            "/src/assets/images/Parkland.jpg",
         ],
         amenities: [],
         features: ["Corner Plot", "Ready for Construction", "Good Locality"],
@@ -163,55 +129,28 @@ const buyPropertiesData = [
         builder: "BPTP Parklands",
     },
     {
-        id: 8,
-        title: "Premium 3 BHK in Sector 78",
-        location: "Sector 78, Greater Faridabad",
-        sector: "78",
-        price: 6500000,
-        priceDisplay: "65 Lakh",
-        type: "residential",
-        bhk: 3,
-        size: 1600,
-        floor: 7,
-        totalFloors: 12,
-        propertyAge: "New Construction",
-        images: [
-            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
-        ],
-        amenities: ["gym", "pool", "parking", "security"],
-        features: ["3 Bathrooms", "Balcony", "Modular Kitchen", "Lift"],
-        description: "Well-appointed 3 BHK apartment with premium finishes and great natural light. Located in a prime area with excellent connectivity.",
-        builder: "Mansha Group",
-        mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
-    },
-    {
-        id: 9,
-        title: "2 BHK Flat in Sector 82",
+        id: 7,
+        title: "2&3 BHK Flat in Sector 82",
         location: "Sector 82, Greater Faridabad",
         sector: "82",
-        price: 4800000,
-        priceDisplay: "48 Lakh",
+        price: 6000000,
+        priceDisplay: "60 Lakh",
         type: "residential",
         bhk: 2,
         size: 1150,
         floor: 4,
         totalFloors: 10,
-        propertyAge: "1 Year Old",
+        propertyAge: "10 Year Old",
         images: [
-            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+            "/src/assets/images/Grenura.jpg",
         ],
         amenities: ["parking", "security", "lift"],
         features: ["2 Bathrooms", "Balcony", "Modern Design"],
         description: "Contemporary 2 BHK apartment ideal for families. Close to schools, hospitals, and shopping centers.",
-        builder: "Mansha Group",
-        mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
+        builder: "BPTP Park Grandeura",
     },
     {
-        id: 10,
+        id: 8,
         title: "Spacious 2 BHK in Sector 88",
         location: "Sector 88, Greater Faridabad",
         sector: "88",
@@ -224,9 +163,7 @@ const buyPropertiesData = [
         totalFloors: 11,
         propertyAge: "New Construction",
         images: [
-            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+            "/src/assets/images/Palm.jpg",
         ],
         amenities: ["gym", "pool", "parking", "security"],
         features: ["2 Bathrooms", "Study Area", "Balcony", "Pantry"],
@@ -235,7 +172,7 @@ const buyPropertiesData = [
         mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
     },
     {
-        id: 11,
+        id: 9,
         title: "3 BHK Tower in Sector 88",
         location: "Sector 88, Greater Faridabad",
         sector: "88",
@@ -248,18 +185,15 @@ const buyPropertiesData = [
         totalFloors: 15,
         propertyAge: "New Construction",
         images: [
-            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop"
+            "/src/assets/images/Palm.jpg",
         ],
         amenities: ["gym", "pool", "parking", "security", "garden"],
         features: ["3 Bathrooms", "Garden", "Modular Kitchen", "Lift"],
         description: "Luxurious 3 BHK in a multi-tower apartment complex with world-class amenities and landscaped gardens.",
         builder: "RPS Palms",
-        mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
     },
     {
-        id: 12,
+        id: 10,
         title: "Premium 2 BHK in Sector 86",
         location: "Sector 86, Greater Faridabad",
         sector: "86",
@@ -272,18 +206,15 @@ const buyPropertiesData = [
         totalFloors: 12,
         propertyAge: "New Construction",
         images: [
-            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
+            "/src/assets/images/Omaxe.jpg",
         ],
         amenities: ["gym", "parking", "security"],
         features: ["2 Bathrooms", "Balcony", "Modular Kitchen"],
         description: "Modern 2 BHK offering premium options with resort-style amenities in Omaxe Heights project.",
         builder: "Omaxe Heights",
-        mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
     },
     {
-        id: 13,
+        id: 11,
         title: "Luxury 3 BHK in Sector 86",
         location: "Sector 86, Greater Faridabad",
         sector: "86",
@@ -296,23 +227,20 @@ const buyPropertiesData = [
         totalFloors: 14,
         propertyAge: "New Construction",
         images: [
-            "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1512917774080-9d5a8324a1fc?w=800&h=500&fit=crop"
+            "/src/assets/images/Omaxe.jpg",
         ],
         amenities: ["gym", "pool", "parking", "security"],
         features: ["3 Bathrooms", "Jacuzzi", "Modular Kitchen", "Smart Home"],
         description: "Exclusive 3-4 BHK homes with resort-style amenities, high-end finishes, and premium lifestyle.",
         builder: "Omaxe Heights",
-        mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
     },
     {
-        id: 14,
+        id: 12,
         title: "Residential Plot in Sector 80",
         location: "Sector 80, Greater Faridabad",
         sector: "80",
-        price: 38000000,
-        priceDisplay: "3 CR 80 Lakh",
+        price: 30000000,
+        priceDisplay: "3 CR",
         type: "plot",
         bhk: null,
         size: 204,
@@ -320,9 +248,7 @@ const buyPropertiesData = [
         totalFloors: null,
         propertyAge: "Vacant Land",
         images: [
-            "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1595255707802-e92b5a74e5b7?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop"
+            "/src/assets/images/Sec80.jpg",
         ],
         amenities: [],
         features: ["Corner Plot", "Fenced", "Road Frontage"],
@@ -330,7 +256,7 @@ const buyPropertiesData = [
         builder: "Huda Plots",
     },
     {
-        id: 15,
+        id: 13,
         title: "2 BHK Apartment in Sector 88",
         location: "Sector 88, Greater Faridabad",
         sector: "88",
@@ -343,8 +269,7 @@ const buyPropertiesData = [
         totalFloors: 8,
         propertyAge: "10 Year Old",
         images: [
-            "https://images.unsplash.com/photo-1549399542-7e3f8b83ad45?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=500&fit=crop"
+            "/src/assets/images/Savana.jpg",
         ],
         amenities: ["parking", "security"],
         features: ["2 Bathroom", "Balcony", "Well Designed"],
@@ -352,30 +277,7 @@ const buyPropertiesData = [
         builder: "RPS Savana",
     },
     {
-        id: 16,
-        title: "2 BHK in Sector 68",
-        location: "Sector 68, Greater Faridabad",
-        sector: "68",
-        price: 7000000,
-        priceDisplay: "70 Lakh",
-        type: "residential",
-        bhk: 3,
-        size: 1500,
-        floor: 4,
-        totalFloors: 11,
-        propertyAge: "New Construction",
-        images: [
-            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
-        ],
-        amenities: ["gym", "pool", "parking", "security"],
-        features: ["2 Bathrooms", "Balcony", "Modular Kitchen", "Lift"],
-        description: "Luxury 2 BHK apartment offering ultimate comfort with premium finishes and modern design.",
-        builder: "AQ Buildtech",
-    },
-    {
-        id: 17,
+        id: 14,
         title: "3+1 BHK Flat in Ozone Park Apartments",
         location: "Sector 86, Greater Faridabad",
         sector: "86",
@@ -384,19 +286,16 @@ const buyPropertiesData = [
         type: "residential",
         bhk: 3+1,
         size: 1709,
-        floor: 4,
+        floor: 2,
         totalFloors: 15,
         propertyAge: "12 Year old",
         images: [
             "/src/assets/images/OzonePark1.jpg",
-            "https://images.unsplash.com/photo-1546439999-a7e0b75ceaea?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1559592413-915581eaa923?w=800&h=500&fit=crop"
         ],
         amenities: ["gym", "pool", "parking", "security", "concierge"],
         features: ["4 Bathrooms", "Terrace", "Modular Kitchen", "Smart Home", "View"],
         description: "Ultra-luxury 3+1 BHK with premium finishes, exclusive amenities, and panoramic views.",
-        builder: "Shiv Sai",
-        mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
+        builder: "Ozone Park",
     },
 ];
 

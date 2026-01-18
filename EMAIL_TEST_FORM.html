@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Functionality Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            display: block;
+        }
+        .test-button {
+            background: #28a745;
+            color: white;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        .test-button:hover {
+            background: #218838;
+        }
+        .endpoint-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+        .endpoint-info code {
+            background: #fff;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✉️ Email Functionality Test</h1>
+        <p class="subtitle">Test all email forms - Home Enquiry, Contact Page, and Property Enquiry</p>
+        
+        <div class="endpoint-info">
+            🔌 Backend API: <code>http://localhost:3001/api/send-email</code>
+            <br>Email will be sent to: <code>greaterfaridabadproperty@gmail.com</code>
+        </div>
+        
+        <button class="btn-primary test-button" onclick="testHealthEndpoint()">
+            ✓ Test Backend Connection
+        </button>
+        
+        <form id="emailForm">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Your full name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="9999098553">
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject *</label>
+                <input type="text" id="subject" name="subject" required placeholder="Your subject">
+            </div>
+            
+            <div class="form-group">
+                <label for="type">Email Type *</label>
+                <select id="type" name="type" required>
+                    <option value="">-- Select Type --</option>
+                    <option value="enquiry">Property Enquiry</option>
+                    <option value="contact">Contact Form</option>
+                    <option value="property-enquiry">Property Details Enquiry</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn-primary">Send Email</button>
+                <button type="reset" class="btn-secondary">Clear Form</button>
+            </div>
+        </form>
+        
+        <div id="status" class="status"></div>
+    </div>
+
+    <script src="src/js/config.js"></script>
+    <script>
+        async function testHealthEndpoint() {
+            try {
+                const response = await fetch('http://localhost:3001/api/health');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showStatus(`✓ Backend is running! Service: ${data.service}`, 'success');
+                } else {
+                    showStatus('❌ Backend returned an error', 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Cannot connect to backend. Is it running on port 3001? Error: ${error.message}`, 'error');
+            }
+        }
+
+        document.getElementById('emailForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                type: document.getElementById('type').value
+            };
+
+            showStatus('📤 Sending email...', 'info');
+
+            try {
+                const response = await fetch(CONFIG.SEND_EMAIL_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    showStatus(`✅ Success! Email sent to greaterfaridabadproperty@gmail.com\n\nMessage: ${result.message}`, 'success');
+                    document.getElementById('emailForm').reset();
+                } else {
+                    showStatus(`❌ Failed to send email\n\nError: ${result.message || 'Unknown error'}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Error sending email\n\nDetails: ${error.message}\n\nMake sure the backend is running on port 3001`, 'error');
+                console.error('Error:', error);
+            }
+        });
+
+        function showStatus(message, type) {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+            statusEl.style.whiteSpace = 'pre-wrap';
+        }
+    </script>
+</body>
+</html>

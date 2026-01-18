@@ -317,31 +317,33 @@ async function sendEnquiry(data) {
     try {
         showToast('Sending your enquiry...', 'info');
         
-        // Prepare data for Formspree
-        const formData = new FormData();
-        formData.append('name', data.fullName);
-        formData.append('email', data.email);
-        formData.append('phone', data.phone);
-        formData.append('propertyType', data.propertyType);
-        formData.append('message', data.message);
-        formData.append('_subject', `New Property Enquiry from ${data.fullName}`);
-        formData.append('_reply_to', data.email);
-        
-        // Send via Formspree
-        const response = await fetch(CONFIG.FORMSPREE_ENDPOINT, {
+        // Send via Backend API
+        const response = await fetch(CONFIG.SEND_EMAIL_ENDPOINT, {
             method: 'POST',
-            body: formData,
             headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            }
+            },
+            body: JSON.stringify({
+                name: data.fullName,
+                email: data.email,
+                phone: data.phone,
+                propertyType: data.propertyType,
+                message: data.message,
+                subject: `New Property Enquiry from ${data.fullName}`,
+                type: 'enquiry'
+            })
         });
         
-        if (response.ok) {
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
             showToast('Thank you! We will contact you soon.', 'success');
             closeModal(document.getElementById('enquiryModal'));
             document.getElementById('enquiryForm').reset();
         } else {
             showToast('Error sending enquiry. Please try again.', 'error');
+            console.error('Email error:', result);
         }
     } catch (error) {
         showToast('Error sending enquiry. Please try again.', 'error');
@@ -356,38 +358,33 @@ async function sendContactMessage(data) {
     try {
         showToast('Sending your message...', 'info');
         
-        // Prepare data for Formspree
-        const formData = new FormData();
-        formData.append('fullName', data.fullName);
-        formData.append('email', data.email);
-        formData.append('phone', data.phone);
-        formData.append('subject', data.subject);
-        formData.append('propertyType', data.propertyType);
-        formData.append('message', data.message);
-        formData.append('_subject', `New Contact Message: ${data.subject}`);
-        formData.append('_reply_to', data.email);
-        
-        // Send via Formspree
-        const response = await fetch(CONFIG.FORMSPREE_ENDPOINT, {
+        // Send via Backend API
+        const response = await fetch(CONFIG.SEND_EMAIL_ENDPOINT, {
             method: 'POST',
-            body: formData,
             headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            }
+            },
+            body: JSON.stringify({
+                name: data.fullName,
+                email: data.email,
+                phone: data.phone,
+                subject: data.subject,
+                propertyType: data.propertyType,
+                message: data.message,
+                type: 'contact'
+            })
         });
         
-        if (response.ok) {
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
             showToast('Thank you! We will get back to you soon.', 'success');
             document.getElementById('contactForm').reset();
         } else {
             showToast('Error sending message. Please try again.', 'error');
+            console.error('Email error:', result);
         }
-        
-        // In production, send via API
-        // await makeApiRequest(`${CONFIG.API_BASE_URL}/contact`, {
-        //     method: 'POST',
-        //     body: JSON.stringify(data)
-        // });
     } catch (error) {
         showToast('Error sending message. Please try again.', 'error');
         console.error(error);
@@ -401,31 +398,32 @@ async function sendPropertyEnquiry(data) {
     try {
         showToast('Sending enquiry for ' + data.propertyTitle + '...', 'info');
         
-        // Prepare data for Formspree
-        const formData = new FormData();
-        formData.append('name', data.name);
-        formData.append('email', data.email);
-        formData.append('phone', data.phone);
-        formData.append('propertyTitle', data.propertyTitle);
-        formData.append('message', data.message);
-        formData.append('_subject', `Property Enquiry: ${data.propertyTitle}`);
-        formData.append('_reply_to', data.email);
-        
-        // Send via Formspree
-        const response = await fetch(CONFIG.FORMSPREE_ENDPOINT, {
+        // Send via Backend API
+        const response = await fetch(CONFIG.SEND_EMAIL_ENDPOINT, {
             method: 'POST',
-            body: formData,
             headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            }
+            },
+            body: JSON.stringify({
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                subject: `Property Enquiry: ${data.propertyTitle}`,
+                message: data.message,
+                type: 'property-enquiry'
+            })
         });
         
-        if (response.ok) {
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
             showToast('Your enquiry has been sent! We will contact you soon.', 'success');
             document.getElementById('propertyEnquiryForm').reset();
             closeModal(document.getElementById('propertyEnquiryModal'));
         } else {
             showToast('Error sending enquiry. Please try again.', 'error');
+            console.error('Email error:', result);
         }
     } catch (error) {
         showToast('Error sending enquiry. Please try again.', 'error');
