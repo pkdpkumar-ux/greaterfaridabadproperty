@@ -52,38 +52,32 @@ async function sendContactForm(data) {
     try {
         showToast('Sending your message...', 'info');
         
-        // Send via Backend API
-        const response = await fetch(CONFIG.SEND_EMAIL_ENDPOINT, {
+        // Send via FormSubmit.co (same as list-property.html)
+        const formData = new FormData();
+        formData.append('name', data.fullName);
+        formData.append('email', data.email);
+        formData.append('phone', data.phone);
+        formData.append('subject', data.subject);
+        formData.append('propertyType', data.propertyType);
+        formData.append('message', data.message);
+        formData.append('_captcha', 'false');
+        formData.append('_next', window.location.href);
+        
+        const response = await fetch('https://formsubmit.co/greaterfaridabadproperty@gmail.com', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                name: data.fullName,
-                email: data.email,
-                phone: data.phone,
-                subject: data.subject,
-                propertyType: data.propertyType,
-                message: data.message,
-                type: 'contact'
-            })
+            body: formData,
+            mode: 'no-cors'
         });
         
-        const result = await response.json();
-        
-        if (response.ok && result.success) {
-            showToast('Thank you for contacting us! We will get back to you soon.', 'success');
-            document.getElementById('contactForm').reset();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            showToast('Error sending message. Please try again.', 'error');
-            console.error('Email error:', result);
-        }
+        // With no-cors, we can't check response.ok, so assume success
+        showToast('Thank you for contacting us! We will get back to you soon.', 'success');
+        document.getElementById('contactForm').reset();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        console.log('Contact message sent to FormSubmit.co');
         
     } catch (error) {
+        console.error('Error sending message:', error);
         showToast('Error sending message. Please try again.', 'error');
-        console.error(error);
     }
 }
 

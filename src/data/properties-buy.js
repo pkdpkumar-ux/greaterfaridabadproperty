@@ -297,30 +297,6 @@ const buyPropertiesData = [
         description: "Ultra-luxury 3+1 BHK with premium finishes, exclusive amenities, and panoramic views.",
         builder: "Ozone Park",
     },
-    {
-        id: 15,
-        title: "Pawan's Property",
-        location: "Sector 85, Greater Faridabad",
-        sector: "85",
-        price: 20000000,
-        priceDisplay: "₹2 Cr",
-        type: "builder-floor",
-        bhk: 4,
-        size: 2600,
-        floor: 2,
-        totalFloors: 5,
-        propertyAge: "User Submitted",
-        images: [
-            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=500&fit=crop",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop"
-        ],
-        amenities: ["parking", "security", "garden", "lift", "water", "power"],
-        features: ["User Submitted Property"],
-        description: "Ready to Move Builder Floor",
-        builder: "User",
-        mapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.788486!2d77.314812!3d28.408976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI0JzMyLjMiTiA3N8KwMTgnNTMuMyJF!5e0!3m2!1sen!2sin!4v1234567890"
-    },
 ];
 
 // For backwards compatibility

@@ -127,28 +127,38 @@
                     <p id="detailDescription">Property description will appear here.</p>
                 </div>
 
-                <!-- Contact Form -->
+                <!-- Contact Information -->
                 <div class="property-section contact-section">
                     <h3>Interested in this property?</h3>
-                    <form class="contact-form" id="propertyEnquiryForm">
-                        <div class="form-group">
-                            <label>Your Name *</label>
-                            <input type="text" name="name" required>
+                    <div class="contact-info">
+                        <p>Get in touch with us for more information about this property.</p>
+                        
+                        <div class="contact-details" style="margin: 30px 0;">
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="margin-bottom: 10px;">Call us directly:</h4>
+                                <p>
+                                    <i class="fas fa-phone" style="color: #0066cc; margin-right: 10px;"></i>
+                                    <a href="tel:+919999098553" style="color: #0066cc; text-decoration: none; font-size: 18px; font-weight: bold;">
+                                        +91 9999098553
+                                    </a>
+                                </p>
+                            </div>
+                            
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="margin-bottom: 10px;">Send us a message:</h4>
+                                <a href="../pages/contact.html" class="btn btn-primary" style="display: inline-block; padding: 10px 20px; text-decoration: none;">
+                                    <i class="fas fa-envelope"></i> Contact Us Form
+                                </a>
+                            </div>
+                            
+                            <div>
+                                <h4 style="margin-bottom: 10px;">Chat on WhatsApp:</h4>
+                                <a href="https://wa.me/919999098553?text=Hi%20I%20am%20interested%20in%20this%20property" target="_blank" class="btn btn-success" style="display: inline-block; padding: 10px 20px; text-decoration: none; background-color: #25d366;">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                                </a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone *</label>
-                            <input type="tel" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea name="message" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Send Enquiry</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -212,8 +222,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Load both property sources for details page -->
     <script src="../src/data/properties-buy.js"></script>
+    <script src="../src/data/rental-properties.js"></script>
     <script src="../src/js/config.js"></script>
     <script src="../src/js/navigation.js"></script>
+    <script src="../src/js/main.js"></script>
     <script src="../src/js/property-details.js"></script>
 </body>
 </html>

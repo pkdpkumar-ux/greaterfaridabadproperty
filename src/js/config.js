@@ -9,12 +9,10 @@ const CONFIG = {
     EMAIL: 'greaterfaridabadproperty@gmail.com',
     WHATSAPP: '+91-9999098553',
     
-    // Email Configuration - Using Backend API
-    EMAIL_SERVICE: 'Backend', // Using Flask backend for reliable email delivery
+    // Email Configuration - Using Backend API (proxies to FormSubmit.co)
+    EMAIL_SERVICE: 'Backend', // Backend proxies to FormSubmit.co
     SEND_EMAIL_ENDPOINT: 'http://localhost:3001/api/send-email',
-    EMAIL_SERVICE_ID: 'your_service_id',
-    EMAIL_TEMPLATE_ID: 'your_template_id',
-    EMAIL_PUBLIC_KEY: 'your_public_key',
+    FORMSUBMIT_ENDPOINT: 'https://formsubmit.co/greaterfaridabadproperty@gmail.com',
     
     // Form Validation Rules
     VALIDATION: {

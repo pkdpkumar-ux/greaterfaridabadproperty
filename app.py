@@ -1,6 +1,6 @@
 """
 Greater Faridabad Property - Property Listing API Server
-Flask backend to receive property submissions and trigger GitHub Actions
+Flask backend to receive property submissions and send emails
 """
 
 from flask import Flask, jsonify, request
@@ -12,6 +12,9 @@ from datetime import datetime
 import json
 import re
 import subprocess
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Load environment variables
 load_dotenv()
@@ -103,18 +106,19 @@ def api_info():
         'framework': 'Flask',
         'endpoints': {
             'submit': 'POST /api/property/submit',
-            'send-email': 'POST /api/send-email',
             'health': 'GET /api/health',
             'info': 'GET /api/info'
-        }
+        },
+        'note': 'Email forms now use FormSubmit.co directly from frontend - /api/send-email is deprecated'
     }), 200
 
 
 @app.route('/api/send-email', methods=['POST'])
 def send_email():
     """
-    Send email through FormSubmit.co service
-    This endpoint receives form data and forwards it to FormSubmit.co
+    Send email via multiple methods:
+    1. If Gmail app password is set, use Gmail SMTP
+    2. Otherwise, print to console (for development)
     """
     try:
         data = request.get_json()
@@ -139,52 +143,83 @@ def send_email():
         print(f"\n✓ Email request received:")
         print(f"  From: {data.get('name')} ({data.get('email')})")
         print(f"  Type: {data.get('type', 'general')}")
+        print(f"  Subject: {data.get('subject', 'N/A')}")
+        print(f"  Message: {data.get('message')[:100]}...")
         
-        # Forward to FormSubmit.co
-        formsubmit_url = 'https://formsubmit.co/greaterfaridabadproperty@gmail.com'
+        # Try to send via Gmail SMTP if configured
+        sender_password = os.getenv('SENDER_PASSWORD', '').strip()
+        sender_email = os.getenv('SENDER_EMAIL', 'greaterfaridabadproperty@gmail.com').strip()
+        recipient_email = os.getenv('RECIPIENT_EMAIL', 'greaterfaridabadproperty@gmail.com').strip()
         
-        # Prepare form data for FormSubmit
-        form_data = {
-            'name': data.get('name'),
-            'email': data.get('email'),
-            'phone': data.get('phone', ''),
-            'subject': data.get('subject', 'Contact from Greater Faridabad Property'),
-            'propertyType': data.get('propertyType', ''),
-            'message': data.get('message'),
-            '_subject': data.get('subject', f"New {data.get('type', 'Contact')} from {data.get('name')}"),
-            '_reply_to': data.get('email'),
-            '_captcha': 'false'
-        }
+        if sender_password and len(sender_password) >= 16:
+            # Try Gmail SMTP
+            try:
+                msg = MIMEMultipart('alternative')
+                msg['Subject'] = data.get('subject', f"New {data.get('type', 'Contact')} from {data.get('name')}")
+                msg['From'] = sender_email
+                msg['To'] = recipient_email
+                msg['Reply-To'] = data.get('email')
+                
+                # Build email body
+                email_body = f"""Hello,
+
+You have received a new enquiry from the Greater Faridabad Property website.
+
+Name: {data.get('name')}
+Email: {data.get('email')}
+Phone: {data.get('phone', 'N/A')}
+Type: {data.get('type', 'general')}
+Subject: {data.get('subject', 'N/A')}
+Property Type: {data.get('propertyType', 'N/A')}
+
+Message:
+{data.get('message')}
+
+---
+This email was sent from Greater Faridabad Property website.
+Please reply to: {data.get('email')}
+"""
+                
+                msg.attach(MIMEText(email_body, 'plain'))
+                
+                # Send via Gmail
+                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server.starttls()
+                server.login(sender_email, sender_password)
+                server.send_message(msg)
+                server.quit()
+                
+                print(f"  ✓ Email sent successfully via Gmail SMTP")
+                return jsonify({
+                    'success': True,
+                    'message': 'Email sent successfully'
+                }), 200
+                
+            except Exception as smtp_error:
+                print(f"  ⚠ Gmail SMTP failed: {str(smtp_error)}")
+                print(f"  ℹ Falling back to console logging...")
         
-        # Send to FormSubmit
-        response = requests.post(formsubmit_url, data=form_data, timeout=10)
+        # Fallback: Log to console for development
+        print(f"\n{'='*60}")
+        print(f"EMAIL SIMULATION (Development Mode)")
+        print(f"{'='*60}")
+        print(f"To: {recipient_email}")
+        print(f"From: {data.get('email')}")
+        print(f"Subject: {data.get('subject', 'Contact from Greater Faridabad Property')}")
+        print(f"\nBody:")
+        print(f"{data.get('message')}")
+        print(f"\n{'='*60}\n")
         
-        if response.status_code == 200:
-            print(f"  ✓ Email sent successfully")
-            return jsonify({
-                'success': True,
-                'message': 'Email sent successfully'
-            }), 200
-        else:
-            print(f"  ✗ FormSubmit response: {response.status_code}")
-            return jsonify({
-                'success': False,
-                'message': 'Failed to send email',
-                'error': f'FormSubmit returned {response.status_code}'
-            }), 500
+        return jsonify({
+            'success': True,
+            'message': 'Email received and logged (check backend console)'
+        }), 200
     
-    except requests.exceptions.RequestException as e:
-        print(f"✗ Error sending email: {str(e)}")
-        return jsonify({
-            'success': False,
-            'message': 'Error sending email',
-            'error': str(e)
-        }), 500
     except Exception as e:
-        print(f"✗ Unexpected error: {str(e)}")
+        print(f"✗ Error: {str(e)}")
         return jsonify({
             'success': False,
-            'message': 'Unexpected error',
+            'message': 'Error processing email',
             'error': str(e)
         }), 500
 

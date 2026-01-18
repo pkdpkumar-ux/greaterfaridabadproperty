@@ -128,7 +128,7 @@ function displayProperties() {
     grid.querySelectorAll('.property-card').forEach(card => {
         card.addEventListener('click', function() {
             const propertyId = this.getAttribute('data-property-id');
-            window.location.href = `./property-details.html?id=${propertyId}`;
+            window.location.href = `./property-details.html?id=${propertyId}&type=buy`;
         });
     });
 }
@@ -309,7 +309,7 @@ function contactProperty(propertyId) {
 
 function shareProperty(propertyId) {
     const property = getPropertyById(propertyId);
-    const url = `${window.location.origin}/pages/property-details.html?id=${propertyId}`;
+    const url = `${window.location.origin}/pages/property-details.html?id=${propertyId}&type=buy`;
     const message = encodeURIComponent(`Check out this amazing ${property.type} property in ${property.location} for ${property.priceDisplay}: ${url}`);
     window.open(`https://wa.me/?text=${message}`, '_blank');
 }

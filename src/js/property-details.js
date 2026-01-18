@@ -15,19 +15,29 @@ class PropertyDetailsManager {
         this.propertyType = urlParams.get('type') || 'buy';
 
         console.log('Property Details Loading:', { propertyId, propertyType: this.propertyType });
+        console.log('Available data:', { 
+            propertiesDataExists: typeof propertiesData !== 'undefined',
+            rentalPropertiesDataExists: typeof rentalPropertiesData !== 'undefined',
+            propertiesCount: typeof propertiesData !== 'undefined' ? propertiesData.length : 0,
+            rentalCount: typeof rentalPropertiesData !== 'undefined' ? rentalPropertiesData.length : 0
+        });
 
         // Get property data
         if (this.propertyType === 'rent') {
+            console.log('Looking for rental property ID:', propertyId);
             this.currentProperty = rentalPropertiesData.find(p => p.id === propertyId);
         } else {
-            // For 'buy' or 'sale' type, use buyPropertiesData or propertiesData
+            console.log('Looking for buy property ID:', propertyId);
             this.currentProperty = propertiesData.find(p => p.id === propertyId);
+            console.log('Available property IDs in propertiesData:', propertiesData.map(p => p.id));
         }
 
         console.log('Found Property:', this.currentProperty);
 
         if (!this.currentProperty) {
-            document.body.innerHTML = '<div class="container"><h2>Property not found</h2></div>';
+            document.body.innerHTML = '<div class="container"><h2>Property not found</h2><p>Looking for ID: ' + propertyId + ' (Type: ' + this.propertyType + ')</p></div>';
+            return;
+        }
             return;
         }
 
@@ -171,23 +181,58 @@ class PropertyDetailsManager {
         }
     }
 
-    submitEnquiry(form) {
-        const formData = new FormData(form);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const phone = formData.get('phone');
-        const message = formData.get('message');
+    async submitEnquiry(form) {
+        try {
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const message = formData.get('message');
 
-        // Create WhatsApp message
-        const whatsappMessage = `Hello! I'm interested in the property: ${this.currentProperty.title}\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`;
-        const whatsappUrl = `https://wa.me/919999098553?text=${encodeURIComponent(whatsappMessage)}`;
+            // Show sending message (with fallback if showToast not available)
+            if (typeof showToast === 'function') {
+                showToast('Sending your enquiry...', 'info');
+            } else {
+                alert('Sending your enquiry...');
+            }
 
-        // Show confirmation and redirect
-        alert('Thank you for your interest! Redirecting to WhatsApp...');
-        window.open(whatsappUrl, '_blank');
+            console.log('Property Enquiry Form Data:', { name, email, phone, propertyTitle: this.currentProperty.title });
 
-        // Reset form
-        form.reset();
+            // Send via FormSubmit.co
+            const submitData = new FormData();
+            submitData.append('name', name);
+            submitData.append('email', email);
+            submitData.append('phone', phone);
+            submitData.append('subject', `Property Enquiry: ${this.currentProperty.title}`);
+            submitData.append('message', message);
+            submitData.append('_captcha', 'false');
+            submitData.append('_next', window.location.href);
+
+            console.log('Sending to FormSubmit.co...');
+            const response = await fetch('https://formsubmit.co/greaterfaridabadproperty@gmail.com', {
+                method: 'POST',
+                body: submitData,
+                mode: 'no-cors'
+            });
+
+            // With no-cors, we can't check response.ok, so assume success
+            console.log('FormSubmit.co request completed');
+            if (typeof showToast === 'function') {
+                showToast('Thank you for your enquiry! We will contact you soon.', 'success');
+            } else {
+                alert('Thank you for your enquiry! We will contact you soon.');
+            }
+            form.reset();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            console.log('Property enquiry sent to FormSubmit.co');
+        } catch (error) {
+            console.error('Error sending enquiry:', error);
+            if (typeof showToast === 'function') {
+                showToast('Error sending enquiry. Please try again.', 'error');
+            } else {
+                alert('Error sending enquiry. Please try again: ' + error.message);
+            }
+        }
     }
 
     renderRelatedProperties() {
